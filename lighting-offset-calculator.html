@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Light, sourced directly, the size of it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Spectral:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E6E0CD; --lift:#F5F1E6; --ink:#13120D; --graphite:#5A5648;
+    --rule:#C0B7A0; --accent:#A8791B; --accent-soft:#8A6314; --glow:#E8C75A;
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans", sans-serif;
+       margin:0; padding:34px 22px 64px; line-height:1.5;}
+  .wrap{max-width:760px; margin:0 auto;}
+  h1{font-family:"Spectral", serif; font-weight:500; font-size:2rem; margin:0 0 6px; letter-spacing:-0.01em;}
+  .sub{font-family:"IBM Plex Mono", monospace; font-size:11.5px; letter-spacing:.1em;
+       text-transform:uppercase; color:var(--graphite); margin:0 0 6px;}
+  .byline{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.05em;
+          color:var(--accent-soft); margin:0 0 26px;}
+  .section-h{font-family:"Spectral", serif; font-weight:500; font-size:1.5rem;
+             margin:0 0 6px; letter-spacing:-0.01em;}
+  .section-sub{font-size:13.5px; color:var(--graphite); line-height:1.55; margin:0 0 14px;}
+
+  .scaler{margin:0 0 18px;}
+  .slabel{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.14em;
+          text-transform:uppercase; color:var(--accent-soft); margin:0 0 10px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{font-family:"IBM Plex Mono", monospace; font-size:12px; padding:7px 13px;
+        background:var(--lift); border:1px solid var(--rule); color:var(--graphite); cursor:pointer;}
+  .chip:hover{border-color:var(--accent); color:var(--ink);}
+  .chip.on{background:var(--ink); color:var(--lift); border-color:var(--ink);}
+
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:8px;}
+  @media (max-width:680px){ .grid{grid-template-columns:1fr;} }
+  .panel{background:var(--lift); border:1px solid var(--rule); padding:20px 20px 22px;}
+  .ptitle{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.14em;
+          text-transform:uppercase; color:var(--accent-soft); margin:0 0 16px;}
+
+  .ctrl{margin-bottom:18px;}
+  .ctrl:last-child{margin-bottom:0;}
+  .crow{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px;}
+  .cname{font-size:13px; color:var(--ink);}
+  .cval{font-family:"IBM Plex Mono", monospace; font-size:13px; color:var(--accent-soft);}
+  input[type=range]{width:100%; accent-color:var(--accent); height:4px; margin:2px 0;}
+  .inline{display:flex; gap:8px;}
+  input[type=number]{flex:1; width:100%; font-family:"IBM Plex Mono", monospace; font-size:14px;
+       padding:7px 9px; background:var(--paper); border:1px solid var(--rule); color:var(--ink);}
+  select{font-family:"IBM Plex Mono", monospace; font-size:13px; padding:7px 9px;
+         background:var(--paper); border:1px solid var(--rule); color:var(--ink);}
+  .hint{font-size:11px; color:var(--graphite); margin-top:6px; line-height:1.4;}
+
+  .big{padding:14px 0; border-bottom:1px solid var(--rule);}
+  .big:first-child{padding-top:0;}
+  .bnum{font-family:"Spectral", serif; font-size:2.25rem; font-weight:500; color:var(--ink); line-height:1;}
+  .bnum span{font-family:"IBM Plex Mono", monospace; font-size:.85rem; font-weight:400;
+             color:var(--graphite); margin-left:6px; letter-spacing:0;}
+  .bcap{font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.12em;
+        text-transform:uppercase; color:var(--accent-soft); margin-top:7px;}
+  .equiv{padding-top:14px;}
+  .eqtitle{font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.12em;
+           text-transform:uppercase; color:var(--accent-soft); margin:0 0 10px;}
+  .eqrow{display:flex; justify-content:space-between; padding:5px 0; font-size:13px;
+         color:var(--ink); border-bottom:1px dotted var(--rule);}
+  .eqrow:last-child{border-bottom:none;}
+  .eqrow b{font-family:"IBM Plex Mono", monospace; color:var(--accent-soft); font-weight:500;}
+
+  .valuation{margin-top:30px; padding:28px 26px 24px; background:var(--ink); color:var(--lift);}
+  .vlabel{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.14em;
+          text-transform:uppercase; color:var(--glow); margin:0 0 14px;}
+  .tam{font-size:13.5px; color:#D9D3C0; line-height:1.55; margin:0 0 22px;}
+  .tam b{color:var(--lift);}
+  .tam .q{color:#A29C88;}
+  .vgrid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px 22px;}
+  @media (max-width:680px){ .vgrid{grid-template-columns:1fr;} }
+  .vctrl .crow{margin-bottom:6px;}
+  .vctrl .cname{font-size:12px; color:#D9D3C0;}
+  .vctrl .cval{color:var(--glow);}
+  .valuation input[type=range]{accent-color:var(--glow);}
+  .vbignum{font-family:"Spectral", serif; font-weight:600;
+           font-size:clamp(2.9rem, 9vw, 4.6rem); color:var(--glow); text-align:center;
+           line-height:1; letter-spacing:-0.01em; margin:26px 0 2px;}
+  .vcap{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.18em;
+        text-transform:uppercase; color:#A29C88; text-align:center; margin:0 0 20px;}
+  .vbreak{display:flex; justify-content:center; gap:30px; flex-wrap:wrap; font-size:13px;
+          color:#D9D3C0; padding-top:18px; border-top:1px solid #3A3830;}
+  .vbreak b{color:var(--lift); font-family:"IBM Plex Mono", monospace; font-weight:500;}
+  .vnote{font-size:11.5px; color:#A29C88; line-height:1.55; margin:18px 0 0;}
+  .priceless{font-family:"Spectral", serif; font-weight:600; font-size:clamp(3.4rem, 12vw, 6rem);
+             color:var(--glow); text-align:center; line-height:1; letter-spacing:-0.02em;
+             margin:22px 0 2px; text-shadow:0 0 34px rgba(232,199,90,0.28);}
+  .priceless-cap{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.18em;
+                 text-transform:uppercase; color:#A29C88; text-align:center; margin:0;}
+
+  .credit{margin-top:34px; padding:16px 18px; background:var(--lift); border:1px solid var(--rule);
+          border-left:3px solid var(--accent); font-size:12.5px; color:var(--graphite); line-height:1.6;}
+  .credit b{color:var(--ink); font-weight:500;}
+  .credit p{margin:0;}
+
+  .foot{margin-top:26px; font-size:12px; color:var(--graphite); line-height:1.6;}
+  .foot b{color:var(--ink); font-weight:500;}
+  .foot code{font-family:"IBM Plex Mono", monospace; font-size:11.5px; background:var(--lift);
+             padding:1px 5px; border:1px solid var(--rule);}
+  .srctitle{font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.14em;
+            text-transform:uppercase; color:var(--accent-soft); margin:26px 0 10px;}
+  .srclist{list-style:none; margin:0; padding:0;}
+  .srclist li{padding:8px 0; border-bottom:1px solid var(--rule); font-size:12.5px;
+              color:var(--graphite); line-height:1.5;}
+  .srclist li:last-child{border-bottom:none;}
+  .srclist .topic{color:var(--ink);}
+  .srclist a{color:var(--accent-soft); text-decoration:none; border-bottom:1px solid var(--rule);}
+  .srclist a:hover{color:var(--accent); border-color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Light, sourced directly</h1>
+  <p class="sub">What artificial light costs today, and what sourcing it directly could free</p>
+  <p class="byline">Modeling and calculator by Claude (Anthropic) &middot; data sources at the foot</p>
+
+  <div class="scaler">
+    <p class="slabel">Pick a scale</p>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <p class="ptitle">Inputs</p>
+
+      <div class="ctrl">
+        <div class="crow"><span class="cname">Electricity use, total</span></div>
+        <div class="inline">
+          <input type="number" id="elec" value="10500" step="any" min="0">
+          <select id="unit">
+            <option value="1">kWh</option>
+            <option value="1000000">GWh</option>
+            <option value="1000000000">TWh</option>
+          </select>
+        </div>
+        <div class="hint">A full year of electricity for the place you are sizing.</div>
+      </div>
+
+      <div class="ctrl">
+        <div class="crow"><span class="cname">Lighting share of electricity</span><span class="cval" id="litVal">8%</span></div>
+        <input type="range" id="lit" min="2" max="20" step="0.5" value="8">
+        <div class="hint">About 8% worldwide; higher where cooling load is lower.</div>
+      </div>
+
+      <div class="ctrl">
+        <div class="crow"><span class="cname">Share supplied by the technology</span><span class="cval" id="supplyVal">100%</span></div>
+        <input type="range" id="supply" min="0" max="100" step="5" value="100">
+        <div class="hint">How much of that lighting is sourced directly instead of from the grid.</div>
+      </div>
+
+      <div class="ctrl">
+        <div class="crow"><span class="cname">Grid carbon intensity</span><span class="cval" id="ciVal">0.39</span></div>
+        <input type="range" id="ci" min="0.05" max="0.9" step="0.01" value="0.39">
+        <div class="hint"><code>kg CO&#8322; / kWh</code>. US ~0.39, world ~0.45, NY ~0.25, UAE ~0.47, China ~0.57.</div>
+      </div>
+
+      <div class="ctrl">
+        <div class="crow"><span class="cname">Electricity price</span><span class="cval" id="priceVal">$0.16</span></div>
+        <input type="range" id="price" min="0.03" max="0.45" step="0.01" value="0.16">
+        <div class="hint"><code>$ / kWh</code>. US ~$0.16, NYC ~$0.22, Dubai ~$0.09, world ~$0.15.</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="ptitle">What it frees, per year</p>
+      <div class="big">
+        <div class="bnum" id="oEnergy">&mdash;</div>
+        <div class="bcap">Electricity freed</div>
+      </div>
+      <div class="big">
+        <div class="bnum" id="oCO2">&mdash;</div>
+        <div class="bcap">Carbon not emitted</div>
+      </div>
+      <div class="big">
+        <div class="bnum" id="oMoney">&mdash;</div>
+        <div class="bcap">Money saved</div>
+      </div>
+      <div class="equiv">
+        <p class="eqtitle">Put another way</p>
+        <div class="eqrow"><span>Cars taken off the road</span><b id="eCars">&mdash;</b></div>
+        <div class="eqrow"><span>Homes' yearly electricity</span><b id="eHomes">&mdash;</b></div>
+        <div class="eqrow"><span>Mature trees, a year of growth</span><b id="eTrees">&mdash;</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:34px;">
+    <h2 class="section-h">Heat, sourced directly</h2>
+    <p class="section-sub">Photons do not only carry light. They carry heat. Today that heat comes from burning fuel, coal to raise the steam that spins turbines and gas to warm buildings. Source even a tenth of total power as photon-heat instead, and here is what that tenth is worth. The slice is kept deliberately conservative.</p>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <p class="ptitle">Inputs</p>
+      <div class="ctrl">
+        <div class="crow"><span class="cname">Share of power from photon-heat</span><span class="cval" id="heatShareVal">10%</span></div>
+        <input type="range" id="heatShare" min="1" max="30" step="1" value="10">
+        <div class="hint">A conservative tenth of total power needs, heating and cooling and the generation heat behind the grid included.</div>
+      </div>
+      <div class="ctrl">
+        <div class="hint" style="margin-top:0;">Sized to the same place, grid carbon, and price you chose above. Pick a scale at the top and this follows. If the displaced source is coal, the carbon avoided runs higher than shown, so this stays on the conservative side.</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="ptitle">What it frees, per year</p>
+      <div class="big">
+        <div class="bnum" id="hEnergy">&mdash;</div>
+        <div class="bcap">Electricity freed</div>
+      </div>
+      <div class="big">
+        <div class="bnum" id="hCO2">&mdash;</div>
+        <div class="bcap">Carbon not emitted</div>
+      </div>
+      <div class="big">
+        <div class="bnum" id="hMoney">&mdash;</div>
+        <div class="bcap">Money saved</div>
+      </div>
+      <div class="equiv">
+        <p class="eqtitle">Put another way</p>
+        <div class="eqrow"><span>Cars taken off the road</span><b id="hCars">&mdash;</b></div>
+        <div class="eqrow"><span>Homes' yearly electricity</span><b id="hHomes">&mdash;</b></div>
+        <div class="eqrow"><span>Mature trees, a year of growth</span><b id="hTrees">&mdash;</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="valuation">
+    <p class="vlabel">The number behind the number</p>
+    <p class="tam">Follow it all the way out. If this supplied the world's light and a tenth of its power, it could keep roughly <b>2.3 billion tons of CO&#8322;</b> out of the air each year, near a sixteenth of all energy emissions. <span class="q">2,200 TWh of lighting and 3,000 TWh of power, at ~0.45 kg/kWh.</span></p>
+
+    <div class="vbignum">$1.4T<span style="font-size:0.34em; letter-spacing:0;"> / yr</span></div>
+    <p class="vcap">the yearly cost of pulling that carbon back out of the sky, at today's ~$600-a-ton capture price, nearer $2.3T at the high end</p>
+
+    <div class="vbreak">
+      <span><b>$445B</b> / yr, society's cost of that carbon at $190 a ton</span>
+      <span><b>$42T</b> to remove it across one generation</span>
+    </div>
+
+    <p class="vnote">Those are the prices of the carbon alone. Behind them sit the systems it helps hold. Earth's ecosystems do work valued near <b style="color:#D9D3C0;">$125 trillion a year</b>. The damages of a warming world are already counted in the tens of trillions a year by mid-century. And some lines, once crossed, no market rebuilds. Arctic ice may melt faster as it warms. The Atlantic circulation that carries tropical warmth toward Europe, the Gulf Stream among its currents, may slow or stall as meltwater freshens the sea, cooling parts of Europe and shifting the rains that billions farm by. Every ton kept out of the air is a small payment against reaching them.</p>
+
+    <p class="vnote" style="margin-top:14px;">Add the carbon, the removal, the damages, and the living planet together, and the honest total runs past any figure here. The Arctic and the ocean's currents are not for sale at any price. Which is the point.</p>
+
+    <div class="priceless">Priceless</div>
+    <p class="priceless-cap">the part no number reaches</p>
+  </div>
+
+  <div class="valuation" style="margin-top:22px;">
+    <p class="vlabel">Zoom out: what the work of bringing this to the world could be worth</p>
+    <p class="tam">Two pools feed this. The world spends about <b>$330B a year</b> on the electricity that makes light. A tenth of all power, sourced as photon-heat, is about <b id="tamHeat">$450B</b> a year more. Together, <b id="tamTotal">$780B</b> a year. <span class="q">Lighting 2,200 TWh; all power ~30,000 TWh; both at ~$0.15/kWh. The heat pool tracks the slider above.</span> That is the pool this could take a slice of.</p>
+    <div class="vgrid">
+      <div class="vctrl">
+        <div class="crow"><span class="cname">Share of world lighting it serves</span><span class="cval" id="vShareVal">10%</span></div>
+        <input type="range" id="vShare" min="1" max="30" step="1" value="10">
+      </div>
+      <div class="vctrl">
+        <div class="crow"><span class="cname">Savings it keeps as revenue</span><span class="cval" id="vCapVal">25%</span></div>
+        <input type="range" id="vCap" min="5" max="50" step="5" value="25">
+      </div>
+      <div class="vctrl">
+        <div class="crow"><span class="cname">Valuation multiple, &times; revenue</span><span class="cval" id="vMultVal">8&times;</span></div>
+        <input type="range" id="vMult" min="2" max="15" step="1" value="8">
+      </div>
+    </div>
+    <div class="vbignum" id="vVal">$156B</div>
+    <p class="vcap">estimated value</p>
+    <div class="vbreak">
+      <span><b id="vSavings">$78B</b> / yr in savings addressed</span>
+      <span><b id="vRevenue">$20B</b> / yr in revenue</span>
+    </div>
+    <p class="vnote">A scenario, not a promise. The pool is the world's lighting bill plus a tenth of all power as photon-heat. The value is that pool, times the share this serves, times the share it keeps as revenue, times the multiple the market pays. Every one of those is a lever above. A real figure turns on execution, defensibility, and timing.</p>
+  </div>
+
+  <div class="credit">
+    <p><b>Who built this.</b> The model, the per-scale estimates, and this calculator were created by <b>Claude (Anthropic)</b> in June 2026. The figures rest on the public datasets listed below; the work of combining them into a like-for-like model across a home, a city, and a megacity is the part I did.</p>
+  </div>
+
+  <div class="foot">
+    <p><b>How it works.</b> Electricity freed = electricity &times; lighting share &times; share supplied. Carbon = electricity freed &times; grid carbon intensity. Money = electricity freed &times; price. Equivalences use 1 car ~4.6 t CO&#8322;/yr and 1 mature tree ~21 kg/yr; homes on a 10,500 kWh basis.</p>
+    <p><b>An envelope, not a forecast.</b> The full figure assumes light is sourced directly in place of all lighting load. Most of that load is night-time, though some commercial lighting is daytime, so a strict night-only figure sits a little lower. City electricity totals and prices are approximate and adjustable above.</p>
+    <p class="srctitle">Data sources</p>
+    <ul class="srclist">
+      <li><span class="topic">Lighting is ~8% of global electricity, ~2,200 TWh/yr</span> &mdash; <a href="https://www.iea.org/commentaries/the-next-wave-of-led-lighting-smarter-circular-and-more-efficient" target="_blank" rel="noopener">IEA, The next wave of LED lighting (2024)</a></li>
+      <li><span class="topic">US home ~10,500 kWh/yr</span> &mdash; <a href="https://www.eia.gov/energyexplained/use-of-energy/electricity-use-in-homes.php" target="_blank" rel="noopener">US EIA, Electricity use in homes</a></li>
+      <li><span class="topic">US home lighting ~1,105 kWh, ~10% in 2015</span> &mdash; <a href="https://www.eia.gov/todayinenergy/detail.php?id=38452" target="_blank" rel="noopener">US EIA, Household lighting consumption</a></li>
+      <li><span class="topic">US grid carbon ~0.81 lb (0.37 kg) CO&#8322;/kWh generated</span> &mdash; <a href="https://www.eia.gov/tools/faqs/faq.php?id=74&amp;t=11" target="_blank" rel="noopener">US EIA</a> &middot; <a href="https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references" target="_blank" rel="noopener">US EPA</a></li>
+      <li><span class="topic">World grid carbon ~445 g/kWh (2024)</span> &mdash; <a href="https://www.iea.org/reports/electricity-2025/emissions" target="_blank" rel="noopener">IEA, Electricity 2025: Emissions</a></li>
+      <li><span class="topic">World electricity ~30,000 TWh/yr (2024)</span> &mdash; <a href="https://ember-energy.org/latest-insights/global-electricity-review-2025/2024-in-review/" target="_blank" rel="noopener">Ember, Global Electricity Review 2025</a></li>
+      <li><span class="topic">Shanghai electricity ~200 TWh/yr (2024)</span> &mdash; <a href="https://www.ceicdata.com/en/china/electricity-consumption/cn-electricity-consumption-shanghai" target="_blank" rel="noopener">CEIC / China Electricity Council</a></li>
+      <li><span class="topic">Dubai electricity ~11,700 kWh per person</span> &mdash; <a href="https://dubaisce.gov.ae/en/dubai-achieves-an-astounding/" target="_blank" rel="noopener">Dubai Supreme Council of Energy</a></li>
+      <li><span class="topic">UAE grid ~0.47 kg/kWh, target 0.27 by 2030</span> &mdash; <a href="https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/environment-and-energy/uae-energy-strategy-2050" target="_blank" rel="noopener">UAE Energy Strategy 2050</a> &middot; <a href="https://www.statista.com/statistics/1302672/uae-emissions-intensity-from-electricity-generation/" target="_blank" rel="noopener">Statista</a></li>
+      <li><span class="topic">New York ~1.4M streetlights, ~990 GWh/yr</span> &mdash; <a href="https://www.nyserda.ny.gov/-/media/Project/Nyserda/Files/Publications/Research/Energy-Efficiency-Services/Street-Lighting-in-NYS.pdf" target="_blank" rel="noopener">NYSERDA, Street Lighting in NYS</a></li>
+      <li><span class="topic">NYC ~250,000 streetlights; the "40% of a city" billing context</span> &mdash; <a href="https://news.climate.columbia.edu/2015/09/28/how-much-energy-does-nyc-waste/" target="_blank" rel="noopener">Columbia Climate School</a></li>
+      <li><span class="topic">Electricity prices: US ~$0.16, NYC ~$0.22, Dubai ~$0.09, world ~$0.15 per kWh</span> &mdash; <a href="https://www.dewa.gov.ae/en/consumer/billing/slab-tariff" target="_blank" rel="noopener">DEWA slab tariff</a> &middot; <a href="https://www.globalpetrolprices.com/United-Arab-Emirates/electricity_prices/" target="_blank" rel="noopener">GlobalPetrolPrices</a> &middot; <a href="https://www.eia.gov/electricity/state/newyork/" target="_blank" rel="noopener">US EIA, New York</a></li>
+      <li><span class="topic">Equivalences: car ~4.6 t/yr, tree ~21 kg/yr</span> &mdash; <a href="https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references" target="_blank" rel="noopener">US EPA, Greenhouse Gas Equivalencies</a></li>
+      <li><span class="topic">Social cost of carbon ~$190/ton (2023)</span> &mdash; <a href="https://www.epa.gov/system/files/documents/2023-12/epa_scghg_2023_report_final.pdf" target="_blank" rel="noopener">US EPA, Report on the Social Cost of Greenhouse Gases</a> &middot; <a href="https://www.rff.org/publications/explainers/social-cost-carbon-101/" target="_blank" rel="noopener">RFF</a></li>
+      <li><span class="topic">Direct air capture ~$600 to $1,000/ton today</span> &mdash; <a href="https://climeworks.com/press-release/next-gen-tech-powers-climeworks-megaton-leap" target="_blank" rel="noopener">Climeworks</a> &middot; <a href="https://www.belfercenter.org/publication/prospects-direct-air-carbon-capture-and-storage-costs-scale-and-funding" target="_blank" rel="noopener">Belfer Center</a></li>
+      <li><span class="topic">Ecosystem services ~$125 trillion/yr (2014 update)</span> &mdash; <a href="https://www.robertcostanza.com/wp-content/uploads/2017/02/2014_J_Costanza_GlobalValueUpdate.pdf" target="_blank" rel="noopener">Costanza et al., Global Environmental Change</a></li>
+      <li><span class="topic">Committed climate damages in the tens of trillions/yr (estimate under revision)</span> &mdash; <a href="https://www.pik-potsdam.de/en/news/latest-news/38-trillion-dollars-in-damages-each-year-world-economy-already-committed-to-income-reduction-of-19-due-to-climate-change" target="_blank" rel="noopener">PIK / Kotz et al.</a></li>
+      <li><span class="topic">Atlantic circulation and Gulf Stream risk</span> &mdash; <a href="https://interactive.carbonbrief.org/amoc-explainer/index.html" target="_blank" rel="noopener">Carbon Brief, AMOC explainer</a> &middot; <a href="https://www.pik-potsdam.de/en/news/latest-news/possible-north-atlantic-overturning-circulation-shutdown-after-2100-in-high-emission-future" target="_blank" rel="noopener">PIK</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  var $ = function(id){ return document.getElementById(id); };
+
+  var PRESETS = [
+    {name:"Average home",      elec:10500, unit:1,          lit:8, supply:100, ci:0.39, price:0.16},
+    {name:"Small town \u00b7 25k",  elec:0.3,   unit:1000000000, lit:8, supply:100, ci:0.39, price:0.15},
+    {name:"Small city \u00b7 100k", elec:1.2,   unit:1000000000, lit:8, supply:100, ci:0.39, price:0.15},
+    {name:"New York City",     elec:50,    unit:1000000000, lit:8, supply:100, ci:0.25, price:0.22},
+    {name:"Dubai",             elec:40,    unit:1000000000, lit:8, supply:100, ci:0.40, price:0.09},
+    {name:"Shanghai",          elec:200,   unit:1000000000, lit:8, supply:100, ci:0.57, price:0.10}
+  ];
+
+  function trim(v){
+    if(v>=100) return String(Math.round(v));
+    if(v>=10)  return v.toFixed(0);
+    return v.toFixed(1);
+  }
+  function fmtEnergy(kwh){
+    if(kwh>=1e9) return trim(kwh/1e9)+"<span>TWh</span>";
+    if(kwh>=1e6) return trim(kwh/1e6)+"<span>GWh</span>";
+    if(kwh>=1e3) return trim(kwh/1e3)+"<span>MWh</span>";
+    return Math.round(kwh)+"<span>kWh</span>";
+  }
+  function fmtMass(kg){
+    if(kg>=1e9) return trim(kg/1e9)+"<span>Mt CO&#8322;</span>";
+    if(kg>=1e6) return trim(kg/1e6)+"<span>kt CO&#8322;</span>";
+    if(kg>=1e3) return trim(kg/1e3)+"<span>t CO&#8322;</span>";
+    return Math.round(kg)+"<span>kg CO&#8322;</span>";
+  }
+  function fmtUSDbig(d){
+    if(d>=1e12) return "$"+trim(d/1e12)+"<span>T / yr</span>";
+    if(d>=1e9) return "$"+trim(d/1e9)+"<span>B / yr</span>";
+    if(d>=1e6) return "$"+trim(d/1e6)+"<span>M / yr</span>";
+    if(d>=1e3) return "$"+Math.round(d/1e3)+"<span>K / yr</span>";
+    return "$"+Math.round(d).toLocaleString()+"<span> / yr</span>";
+  }
+  function fmtUSD(d){
+    if(d>=1e12) return "$"+trim(d/1e12)+"T";
+    if(d>=1e9) return "$"+trim(d/1e9)+"B";
+    if(d>=1e6) return "$"+trim(d/1e6)+"M";
+    if(d>=1e3) return "$"+Math.round(d/1e3)+"K";
+    return "$"+Math.round(d).toLocaleString();
+  }
+  function fmtCount(n){
+    if(n>=1e6) return trim(n/1e6)+"M";
+    if(n>=10)  return Math.round(n).toLocaleString();
+    if(n>=1)   return n.toFixed(0);
+    return n.toFixed(1);
+  }
+
+  function compute(){
+    var elec = parseFloat($("elec").value || 0) * parseFloat($("unit").value);
+    var lit = parseFloat($("lit").value)/100;
+    var supply = parseFloat($("supply").value)/100;
+    var ci = parseFloat($("ci").value);
+    var price = parseFloat($("price").value);
+
+    $("litVal").textContent = parseFloat($("lit").value)+"%";
+    $("supplyVal").textContent = parseFloat($("supply").value)+"%";
+    $("ciVal").textContent = ci.toFixed(2);
+    $("priceVal").textContent = "$"+price.toFixed(2);
+
+    var freed = elec * lit * supply;
+    var co2 = freed * ci;
+    var money = freed * price;
+
+    $("oEnergy").innerHTML = fmtEnergy(freed);
+    $("oCO2").innerHTML = fmtMass(co2);
+    $("oMoney").innerHTML = fmtUSDbig(money);
+
+    $("eCars").textContent = fmtCount(co2/4600);
+    $("eHomes").textContent = fmtCount(freed/10500);
+    $("eTrees").textContent = fmtCount(co2/21);
+
+    computeHeat();
+  }
+
+  function computeHeat(){
+    var elec = parseFloat($("elec").value || 0) * parseFloat($("unit").value);
+    var ci = parseFloat($("ci").value);
+    var price = parseFloat($("price").value);
+    var share = parseFloat($("heatShare").value)/100;
+    $("heatShareVal").textContent = parseFloat($("heatShare").value)+"%";
+
+    var freed = elec * share;
+    var co2 = freed * ci;
+    var money = freed * price;
+
+    $("hEnergy").innerHTML = fmtEnergy(freed);
+    $("hCO2").innerHTML = fmtMass(co2);
+    $("hMoney").innerHTML = fmtUSDbig(money);
+
+    $("hCars").textContent = fmtCount(co2/4600);
+    $("hHomes").textContent = fmtCount(freed/10500);
+    $("hTrees").textContent = fmtCount(co2/21);
+  }
+
+  var LIGHT_POOL = 2200e9 * 0.15;        // ~$330B/yr, world lighting electricity spend
+  var WORLD_ELEC_SPEND = 30000e9 * 0.15; // ~$4,500B/yr, all world electricity (~30,000 TWh)
+  function computeVal(){
+    var share = parseFloat($("vShare").value)/100;
+    var cap = parseFloat($("vCap").value)/100;
+    var mult = parseFloat($("vMult").value);
+    var heatShare = parseFloat($("heatShare").value)/100;
+
+    $("vShareVal").textContent = parseFloat($("vShare").value)+"%";
+    $("vCapVal").textContent = parseFloat($("vCap").value)+"%";
+    $("vMultVal").innerHTML = mult+"&times;";
+
+    var heatPool = WORLD_ELEC_SPEND * heatShare;
+    var TAM = LIGHT_POOL + heatPool;
+    $("tamHeat").textContent = fmtUSD(heatPool);
+    $("tamTotal").textContent = fmtUSD(TAM);
+
+    var savings = TAM * share;
+    var revenue = savings * cap;
+    var value = revenue * mult;
+
+    $("vSavings").textContent = fmtUSD(savings);
+    $("vRevenue").textContent = fmtUSD(revenue);
+    $("vVal").textContent = fmtUSD(value);
+  }
+
+  function applyPreset(p, i){
+    $("elec").value = p.elec;
+    $("unit").value = String(p.unit);
+    $("lit").value = p.lit;
+    $("supply").value = p.supply;
+    $("ci").value = p.ci;
+    $("price").value = p.price;
+    var chips = document.querySelectorAll(".chip");
+    for(var k=0;k<chips.length;k++){ chips[k].classList.toggle("on", k===i); }
+    compute();
+  }
+
+  // build preset chips
+  var chipWrap = $("chips");
+  PRESETS.forEach(function(p, i){
+    var b = document.createElement("button");
+    b.className = "chip" + (i===0 ? " on" : "");
+    b.textContent = p.name;
+    b.addEventListener("click", function(){ applyPreset(p, i); });
+    chipWrap.appendChild(b);
+  });
+
+  // listeners
+  ["elec","unit","lit","supply","ci","price"].forEach(function(id){
+    $(id).addEventListener("input", compute);
+  });
+  ["vShare","vCap","vMult"].forEach(function(id){
+    $(id).addEventListener("input", computeVal);
+  });
+  $("heatShare").addEventListener("input", function(){ computeHeat(); computeVal(); });
+
+  // init
+  applyPreset(PRESETS[0], 0);
+  computeVal();
+</script>
+</body>
+</html>

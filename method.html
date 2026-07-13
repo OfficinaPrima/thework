@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Officina Prima · The Method</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#E6E0CD;--lift:#F5F1E6;--ink:#13120D;--graphite:#5A5648;--rule:#C0B7A0;--accent:#A8791B;--accent-soft:#8A6314;--glow:#E8C75A;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  .narrow{max-width:760px;}
+  .mono{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);}
+
+  /* masthead (shared) */
+  .masthead{border-bottom:1px solid var(--rule);background:rgba(230,224,205,.72);backdrop-filter:blur(4px);position:sticky;top:0;z-index:20;}
+  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:70px;}
+  .wordmark{font-family:"IBM Plex Mono",monospace;font-weight:500;letter-spacing:.22em;font-size:14px;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .wordmark .dot{width:5px;height:5px;background:var(--accent);border-radius:50%;}
+  nav.primary{display:flex;gap:34px;}
+  nav.primary a{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);padding:4px 0;border-bottom:1px solid transparent;text-decoration:none;}
+  nav.primary a:hover{color:var(--ink);border-bottom-color:var(--accent);}
+  nav.primary a.current{color:var(--ink);border-bottom-color:var(--accent);}
+  .menu-btn{display:none;}
+
+  /* intro */
+  .intro{padding:88px 0 30px;}
+  .intro .idx{font-family:"IBM Plex Mono",monospace;font-size:15px;color:var(--accent);letter-spacing:.1em;}
+  .intro h1{font-family:"Spectral",serif;font-weight:400;font-size:clamp(2.1rem,4.4vw,3.2rem);margin:.5rem 0 1.3rem;letter-spacing:-.015em;line-height:1.04;}
+  .intro .lede{font-family:"Spectral",serif;font-weight:300;font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);color:#2c2a22;max-width:40ch;line-height:1.4;margin:0;}
+
+  /* sections */
+  .sec{padding:46px 0;border-top:1px solid var(--rule);}
+  .sec:first-of-type{border-top:0;}
+  .sec .idx{font-family:"IBM Plex Mono",monospace;font-size:15px;color:var(--accent);letter-spacing:.12em;display:block;margin-bottom:14px;}
+  .sec h2{font-family:"Spectral",serif;font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem);letter-spacing:-.01em;line-height:1.16;margin:0 0 22px;}
+  .sec p{font-size:1.06rem;color:#33302a;margin:0 0 18px;max-width:64ch;}
+  .sec p .em{font-style:italic;color:var(--ink);}
+  .sec p.goldem{font-style:italic;color:var(--accent-soft);}
+  .sec p strong{font-weight:500;}
+
+  .pullquote{margin:30px 0;padding:4px 0 4px 26px;border-left:2px solid var(--accent);}
+  .pullquote blockquote{font-family:"Spectral",serif;font-weight:400;font-size:clamp(1.35rem,2.6vw,1.8rem);line-height:1.28;letter-spacing:-.01em;margin:0;color:var(--ink);}
+  .pullquote cite{display:block;margin-top:14px;font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);}
+
+  .aside{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite);border-top:1px solid var(--rule);padding-top:14px;margin-top:26px;max-width:60ch;line-height:1.6;}
+
+  /* close / cta */
+  .close{padding:64px 0 96px;border-top:1px solid var(--rule);}
+  .close h2{font-family:"Spectral",serif;font-weight:400;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.16;letter-spacing:-.01em;margin:0 0 24px;max-width:24ch;}
+  .close p{font-size:1.06rem;color:#33302a;max-width:60ch;margin:0 0 30px;}
+  .btn{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lift);background:var(--ink);padding:15px 24px;border:1px solid var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:10px;text-decoration:none;transition:background .2s,color .2s;}
+  .btn:hover{background:var(--accent);border-color:var(--accent);color:var(--ink);}
+  .link-quiet{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;}
+  .link-quiet:hover{color:var(--ink);border-bottom-color:var(--accent);}
+
+  .colophon{border-top:1px solid var(--rule);padding:34px 0;}
+  .colophon .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .colophon .mono{font-size:11px;}
+
+  @media(max-width:680px){
+    nav.primary{display:none;} .menu-btn{display:inline-flex;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);background:none;border:1px solid var(--rule);padding:8px 12px;cursor:pointer;}
+    .wrap{padding:0 26px;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="wrap">
+      <a class="wordmark" href="index.html"><span class="dot"></span>Officina&nbsp;Prima</a>
+      <nav class="primary">
+        <a href="index.html#work">Works</a>
+        <a href="method.html" class="current">Method</a>
+        <a href="involvement.html">Involvement</a>
+      </nav>
+      <button class="menu-btn">Menu</button>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="wrap narrow">
+      <span class="idx">§ Method</span>
+      <h1>Everything money can buy, you already have. This is the one thing it cannot.</h1>
+      <p class="lede">History does not remember the rich. It remembers what they made possible.</p>
+    </div>
+  </section>
+
+  <div class="wrap narrow">
+
+    <section class="sec">
+      <span class="idx">01 · The oldest answer</span>
+      <h2>We remember the Medici because of whom they backed.</h2>
+      <p>Five centuries on, a family of Florentine bankers is remembered for none of the things they would have expected. Not the banking. Not the fortune, the popes, or the politics: footnotes, all of it. The Medici are immortal for a single reason: the hands they funded. Leonardo. Michelangelo. The minds they freed to work, whose masterpieces carry the Medici name in the margin forever, because the Medici were the ones who made the work possible.</p>
+      <div class="pullquote">
+        <blockquote>Back the right mind, and your name outlives your money.</blockquote>
+        <cite>The bargain, unchanged in five hundred years</cite>
+      </div>
+      <p>Whether the fortune endured or was dispersed is beside the point: wealth was never what carried the name. The richest houses of that age are forgotten entirely, and the Medici are immortal, because they fixed their name to the finest work of their time. A body of work that changes the world, and the name on the hand that funded it, is what the centuries keep.</p>
+    </section>
+
+    <section class="sec">
+      <span class="idx">02 · Still the only way</span>
+      <h2>This is not Renaissance nostalgia. It has held in every century since.</h2>
+      <p>Two thousand years ago a Roman named Maecenas backed two poets, Virgil and Horace. As a statesman he is a footnote; as a patron he is immortal. His name survived so completely that it <span class="em">became the word for patron</span> in a dozen languages still spoken today: mécène, mecenate, Mäzen. He bought that with the right two poets.</p>
+      <p>Nor is it only art, nor only the distant past. When Robert Goddard fired the first liquid-fueled rockets in the New Mexico desert, mocked in the press, short of funds, years ahead of his field, it was Daniel Guggenheim who paid for the work. That work is the foundation of modern rocketry; the road to space runs through it. Goddard's name is on a NASA center now; the Guggenheim name rides beside it, on the age it helped open.</p>
+      <p class="goldem">The names we remember are the ones who made something, or made something possible.</p>
+      <p>The seat beside the work that changes the world is open. Here that work runs seven inventions deep, and the seat beside it is one.</p>
+    </section>
+
+    <section class="sec">
+      <span class="idx">03 · Your part in it</span>
+      <h2>The work protects the name. Capital protects the work.</h2>
+      <p>A vision endures when someone can afford to build it, hold it, and defend it. That is the patron's half. The work's half is everything capital cannot summon alone: the idea, the proof, and the name it will carry across centuries. This workshop has lived both sides of that bargain. A product pioneered ahead of its category is in daily use the world over; its protection lapsed, and today others profit from it. The idea held. The partnership was missing.</p>
+      <p>Which is precisely the point. The mind, the work, and the proof are already here. Your capital is the catalyst, turning a proven idea into a permanent, world-changing reality, the thing a name rides on. You are not being asked to buy a return. You are being offered the one thing your money, on its own, cannot reach.</p>
+    </section>
+
+    <section class="sec">
+      <span class="idx">04 · What a patron receives</span>
+      <h2>A place in the work. And on it.</h2>
+      <p>The yachts, the cars, the islands stopped being interesting years ago. What's left is a legacy. It's the rare thing that can't be bought finished, only built. That patron funds a technology's development, and owns a share of what it earns in the market. This is patronage, not charity, and the upside is real. What it requires is more than a wish for return: dedication to the mission, the work first, the horizon long. Return is not surrendered; it is simply not the reason.</p>
+      <p>The reason is a legacy, and a legacy has no price. Your name bound to a technology that changes the world, carried into centuries you will never see, intact whatever becomes of the fortune. That is what the work makes possible, and the whole of why it is worth doing.</p>
+      <div class="pullquote">
+        <blockquote>A Medici, again.</blockquote>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="close">
+    <div class="wrap narrow">
+      <h2>One body of work. One name carried into history.</h2>
+      <p>The next step is a conversation.</p>
+      <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
+        <a class="btn" href="involvement.html">Explore your involvement <span>&rarr;</span></a>
+        <a class="link-quiet" href="index.html#work">Or see the work first &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <div class="wrap" style="align-items:flex-start;">
+      <span class="mono">Officina Prima<span style="color:var(--accent); margin:0 12px;">&mdash;</span><span style="color:var(--graphite);">A workshop of the first order</span></span>
+      <span class="mono" style="font-size:10.5px; text-transform:none; letter-spacing:.02em; text-align:left; max-width:52ch; line-height:1.6;">The product, the filings, the names: the particulars are disclosed in conversation, not on a page. The workshop shows what it could be, never how it works.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
