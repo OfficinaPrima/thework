@@ -94,6 +94,7 @@
     border-bottom:1px solid transparent;
   }
   nav.primary a:hover{color:var(--ink); border-bottom-color:var(--accent);}
+  .masthead.menu-open nav.primary{display:flex; flex-direction:column; position:absolute; top:100%; right:22px; background:var(--paper-lift); border:1px solid var(--rule); padding:16px 22px; gap:14px; z-index:30;}
   .menu-btn{display:none;}
 
   /* ---------- hero ---------- */
@@ -722,6 +723,15 @@
   window.addEventListener('resize',refresh);
   window.addEventListener('load',refresh);
   refresh();
+</script>
+<script>
+  (function(){
+    var b=document.querySelector('.menu-btn'), m=document.querySelector('.masthead');
+    if(b&&m){
+      b.addEventListener('click',function(){ m.classList.toggle('menu-open'); });
+      m.querySelectorAll('nav.primary a').forEach(function(a){ a.addEventListener('click',function(){ m.classList.remove('menu-open'); }); });
+    }
+  })();
 </script>
 </body>
 </html>

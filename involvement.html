@@ -22,6 +22,7 @@
   nav.primary{display:flex;gap:34px;}
   nav.primary a{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);padding:4px 0;border-bottom:1px solid transparent;text-decoration:none;}
   nav.primary a:hover{color:var(--ink);border-bottom-color:var(--accent);}
+  .masthead.menu-open nav.primary{display:flex;flex-direction:column;position:absolute;top:100%;right:22px;background:var(--paper-lift);border:1px solid var(--rule);padding:16px 22px;gap:14px;z-index:30;}
   nav.primary a.current{color:var(--ink);border-bottom-color:var(--accent);}
   .menu-btn{display:none;}
 
@@ -308,5 +309,14 @@
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script src="https://js.hcaptcha.com/1/api.js?onload=opHcapLoad&render=explicit&recaptchacompat=off" async defer></script>
+<script>
+  (function(){
+    var b=document.querySelector('.menu-btn'), m=document.querySelector('.masthead');
+    if(b&&m){
+      b.addEventListener('click',function(){ m.classList.toggle('menu-open'); });
+      m.querySelectorAll('nav.primary a').forEach(function(a){ a.addEventListener('click',function(){ m.classList.remove('menu-open'); }); });
+    }
+  })();
+</script>
 </body>
 </html>
