@@ -267,6 +267,8 @@
   }
 
   /* ---------- responsive ---------- */
+  .work-lede{max-width:62ch; margin-top:-60px; margin-bottom:6px;}
+  .archive-note{margin-top:-200px;}
   @media (max-width:900px){
     .hero .wrap{grid-template-columns:1fr; gap:42px;}
     .hero .plate-fig{order:-1;}
@@ -276,6 +278,8 @@
     .rec-cell{border-right:0; border-bottom:1px solid var(--rule);}
     .rec-cell:last-child{border-bottom:0;}
     .section-head .head-note{display:none;}
+    .work-lede{margin-top:0;}
+    .archive-note{margin-top:0;}
   }
   @media (max-width:600px){
     .wrap{padding:0 22px;}
@@ -447,7 +451,7 @@
         <h2>The Work</h2>
         <p class="mono head-note">Stages run from proof of concept to production-ready.</p>
       </div>
-      <p style="max-width:62ch; margin-top:-60px; margin-bottom:6px;">One line, threading several inventions across seven fields. Follow it down: a single continuous path through one mind's works to better the world.</p>
+      <p class="work-lede">One line, threading several inventions across seven fields. Follow it down: a single continuous path through one mind's works to better the world.</p>
       <p class="mono" style="margin-top:0;">Scroll to follow the line &middot; select any image to begin</p>
 
       <div class="stage" id="stage">
@@ -491,7 +495,7 @@
     <div class="fullplate" data-tech="agri"></div>
   </div>
     </div>
-      <div class="wrap"><p class="mono" style="margin-top:-200px;">Further works are held in the archive, shown by request.</p></div>
+      <div class="wrap"><p class="mono archive-note">Further works are held in the archive, shown by request.</p></div>
   </section>
 
   <!-- ================= METHOD ================= -->
