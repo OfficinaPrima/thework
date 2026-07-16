@@ -273,6 +273,10 @@
   .premise .wrap{display:flex;flex-direction:column;gap:13px;}
   .premise p{margin:0;font-size:15px;color:var(--ink);}
   .premise .plabel{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-soft);margin-right:10px;}
+  .premise a{color:inherit;text-decoration:none;}
+  .premise a:hover .plabel{color:var(--accent);}
+  html{scroll-behavior:smooth;}
+  #work,#method,#involve{scroll-margin-top:80px;}
   .archive-note{margin-top:-200px;}
   @media (max-width:900px){
     .hero .wrap{grid-template-columns:1fr; gap:42px;}
@@ -440,10 +444,6 @@
           <text class="figlabel" x="446" y="346" text-anchor="end">SHEET 1/1</text>
         </svg>
         <img class="plate-logo" src="../main-logo.png" alt="Officina Prima" onload="this.closest('figure').classList.add('has-logo')" onerror="this.remove()">
-        <figcaption>
-          <span class="mono">Frontispiece</span>
-          <span class="mono" style="color:var(--accent);">Officina Prima</span>
-        </figcaption>
       </figure>
     </div>
   </section>
@@ -451,9 +451,9 @@
   <!-- ================= PREMISE (variant B) ================= -->
   <section class="premise">
     <div class="wrap">
-      <p><span class="plabel">01 &middot; The maker:</span>one inventor, seven technologies, one body of work.</p>
-      <p><span class="plabel">02 &middot; The invitation:</span>a patron funds one technology&rsquo;s development into the world.</p>
-      <p><span class="plabel">03 &middot; What a patron holds:</span>a share of what it earns in the market, and a name that travels with the work.</p>
+      <p><a href="#work"><span class="plabel">01 &middot; The maker:</span>one inventor, seven technologies, one body of work.</a></p>
+      <p><a href="#method"><span class="plabel">02 &middot; The invitation:</span>a patron funds one technology&rsquo;s development into the world.</a></p>
+      <p><a href="#involve"><span class="plabel">03 &middot; What a patron holds:</span>a share of what it earns in the market, and a name that travels with the work.</a></p>
     </div>
   </section>
 
@@ -513,7 +513,7 @@
   </section>
 
   <!-- ================= METHOD ================= -->
-  <section class="section method">
+  <section class="section method" id="method">
     <div class="wrap">
       <div>
         <div class="section-head" style="margin-bottom:30px;">
@@ -534,11 +534,24 @@
     </div>
   </section>
 
+  <!-- ================= INVOLVEMENT ================= -->
+  <section class="section involve" id="involve">
+    <div class="wrap">
+      <div class="inner">
+        <span class="mono" style="font-size:15px;">§ 03 · Involvement</span>
+        <h2>This is patronage.</h2>
+        <p>For those who have moved past the question of return, and toward the question of what they leave built. You fund the work's development and own a share of what it earns in the market. Terms are found in conversation. There are no figures on this page.</p>
+        <a href="../involvement.html" class="btn">Explore your involvement <span class="arr">→</span></a>
+        <p class="mono terms-note">By introduction and conversation. No offer of securities is made on this site.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= RECORD ================= -->
   <section class="section record">
     <div class="wrap">
       <div class="section-head">
-        <span class="idx">§ 03</span>
+        <span class="idx">§ 04</span>
         <h2>The Record</h2>
         <p class="mono head-note">What can be shown plainly. The rest is for conversation.</p>
       </div>
@@ -557,19 +570,6 @@
         </div>
       </div>
       <p class="mono rec-foot">Particulars disclosed on a call: names, filings, the product itself.</p>
-    </div>
-  </section>
-
-  <!-- ================= INVOLVEMENT ================= -->
-  <section class="section involve">
-    <div class="wrap">
-      <div class="inner">
-        <span class="mono" style="font-size:15px;">§ 04 · Involvement</span>
-        <h2>This is patronage.</h2>
-        <p>For those who have moved past the question of return, and toward the question of what they leave built. You fund the work's development and own a share of what it earns in the market. Terms are found in conversation. There are no figures on this page.</p>
-        <a href="../involvement.html" class="btn">Explore your involvement <span class="arr">→</span></a>
-        <p class="mono terms-note">By introduction and conversation. No offer of securities is made on this site.</p>
-      </div>
     </div>
   </section>
 
