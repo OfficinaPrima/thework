@@ -150,7 +150,7 @@
   }
   .plate-logo{display:none;}
   .plate-fig.has-logo svg{display:none;}
-  .plate-fig.has-logo .plate-logo{display:block;width:100%;height:auto;}
+  .plate-fig.has-logo .plate-logo{display:block;width:100%;aspect-ratio:23/18;object-fit:contain;}
   .plate-fig .corner{position:absolute; width:8px; height:8px; border:1px solid var(--graphite);}
   .plate-fig .corner.tl{top:7px; left:7px; border-right:0; border-bottom:0;}
   .plate-fig .corner.tr{top:7px; right:7px; border-left:0; border-bottom:0;}
@@ -435,7 +435,7 @@
           <text class="figlabel" x="14" y="346">FIG. 1 · APPARATUS, GENERAL ARRANGEMENT</text>
           <text class="figlabel" x="446" y="346" text-anchor="end">SHEET 1/1</text>
         </svg>
-        <img class="plate-logo" src="pic8.png" alt="Officina Prima" onload="this.closest('figure').classList.add('has-logo')" onerror="this.remove()">
+        <img class="plate-logo" src="main-logo.png" alt="Officina Prima" onload="this.closest('figure').classList.add('has-logo')" onerror="this.remove()">
         <figcaption>
           <span class="mono">Frontispiece</span>
           <span class="mono" style="color:var(--accent);">Officina Prima</span>
@@ -604,23 +604,23 @@
     agri:{no:"No. 1",name:"Agriculture",eyebrow:"Root zone · −2 m",
       problem:"Crops grown out of the sun's reach struggle under artificial light, from bulbs a fraction as efficient as real photons.",
       body:"Sunlight is no longer bound to the sky. Food can grow anywhere now thanks to this new technology.",
-      rlabel:"Frontier 1 · Agriculture · Proof of concept",rname:"Growth was always light.",img:"pic7.png"},
+      rlabel:"Frontier 1 · Agriculture · Proof of concept",rname:"Growth was always light.",img:"agriculture.png"},
     toys:{no:"No. 3",name:"Education",eyebrow:"Street level · 0 m",
       problem:"Every parent has watched their child ignore a toy, and reach for the car keys. Children prefer things that jingle or light up, the instant they interact with them. They are chasing stimuli. Reinforcement loops during infancy speed up brain development: the child acts, the world answers, the child adjusts. Most early-stage learning toys never answer, and the fastest learning years aren't fully realized.",
       body:"The smart sort answers. Every correct interaction meets feedback instantly. The loop closes and development accelerates. The fastest years of synapse formation, fully realized.",
-      rlabel:"Frontier 3 · Children's toys · Production-ready",rname:"Play smarter, learn faster",img:"pic5.png"},
+      rlabel:"Frontier 3 · Children's toys · Production-ready",rname:"Play smarter, learn faster",img:"toy.png"},
     auto:{no:"No. 5",name:"Automotive",eyebrow:"Street level · 0 m",
       problem:"A price tag doesn't ensure survival. Current cars' crash protections only absorb a portion of the energy from impacts. No matter what, some of that force is transferred onto the passengers.",
       body:"This new technology may reduce the force of the impact onto the passengers, even after a car's crash protection is spent. Because passengers absorb less energy from collisions, they may survive collisions that would otherwise be fatal, and are injured far less in non-fatal ones.",
-      rlabel:"Frontier 5 · Automotive · Proof of concept",rname:"The car, rethought",img:"pic3.png"},
+      rlabel:"Frontier 5 · Automotive · Proof of concept",rname:"The car, rethought",img:"car.png"},
     energy:{no:"No. 4",name:"Energy",eyebrow:"Street level · 0 m",
       problem:"Each day the sun gives more light and heat than a city could spend. Each night we burn fuel to make our own, as if the day had taught us nothing.",
       body:"The light was already here for the taking. An old principle, rebuilt, may draw it directly, the heat with it, and burn nothing to do it. The principle is simple. The particulars are earned.",
-      rlabel:"Frontier 4 · Energy · Proof of concept",rname:"The sun is always enough",img:"pic4.png"},
+      rlabel:"Frontier 4 · Energy · Proof of concept",rname:"The sun is always enough",img:"energy.png"},
     safety:{no:"No. 2",name:"Personal Safety",eyebrow:"Street level · 0 m",
       problem:"Some mistakes are final. The gravest danger is the one no one can see. One moment of not knowing can end a life. There are no second tries in certain situations.",
       body:"Making known danger impossible to miss saves lives. The uninitiated can safely adapt to new environments without obscurity. An accident prevented, not survived, by protecting the ones most likely to cause it.",
-      rlabel:"Frontier 2 · Personal Safety · Patented working prototype",rname:"Preventing the irreversible",img:"pic6.png"},
+      rlabel:"Frontier 2 · Personal Safety · Patented working prototype",rname:"Preventing the irreversible",img:"safety.png"},
     aero:{no:"No. 6",name:"Aerospace",eyebrow:"Cruise altitude · +11 km",
       problem:"At thirty thousand feet, wealth has no altitude privilege. When an aircraft can no longer be saved, nothing saves the occupants.",
       body:"This is an aircraft built the other way around, with survival as its first design constraint, not its last. Even if the aircraft itself can't be saved, the occupants may still survive.",
@@ -628,7 +628,7 @@
     space:{no:"No. 7",name:"Space",eyebrow:"Beyond the atmosphere · +400 km",
       problem:"Reaching an asteroid gets the attention. The harder problem waits at the surface. In near-zero gravity, a craft has nothing to push against. Begin to mine, and the craft shoves itself off the rock. Until the craft can hold on, nothing can be taken.",
       body:"The way to hold on was solved by nature first. This mechanism borrows that same method. Only when the craft holds, can value be extracted.",
-      rlabel:"Frontier 7 · Space · Proof of concept",rname:"Nature solves it first",img:"pic1.png"}
+      rlabel:"Frontier 7 · Space · Proof of concept",rname:"Nature solves it first",img:"asteroid.png"}
   };
   const GLYPHS={
     space:'<svg viewBox="0 0 80 64" aria-hidden="true"><path class="ln" d="M26,40 L30,30 L39,25 L49,27 L56,34 L57,44 L50,52 L40,55 L29,52 L24,46 Z"/><circle class="ln" cx="40" cy="16" r="5"/><line class="ln-acc" x1="40" y1="21" x2="28" y2="34"/><line class="ln-acc" x1="40" y1="21" x2="40" y2="36"/><line class="ln-acc" x1="40" y1="21" x2="52" y2="34"/><circle class="fillacc" cx="28" cy="34" r="1.8"/><circle class="fillacc" cx="40" cy="36" r="1.8"/><circle class="fillacc" cx="52" cy="34" r="1.8"/></svg>',
