@@ -269,6 +269,9 @@
 
   /* ---------- responsive ---------- */
   .work-lede{max-width:62ch; margin-top:-60px; margin-bottom:6px;}
+  .inq-label{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);margin:14px 0 6px;}
+  .inq-field{width:100%;box-sizing:border-box;background:var(--paper);border:1px solid var(--rule);padding:10px 12px;font-family:"IBM Plex Sans",sans-serif;font-size:14px;color:var(--ink);}
+  .inq-field:focus{outline:none;border-color:var(--accent);}
   .premise{padding:40px 0 6px;}
   .premise .wrap{display:flex;flex-direction:column;gap:13px;}
   .premise p{margin:0;font-size:15px;color:var(--ink);}
@@ -584,7 +587,7 @@
         <a href="#work">Works</a>
         <a href="../method.html">Method</a>
         <a href="../involvement.html">Involvement</a>
-        <a href="../involvement.html">Inquire</a>
+        <a href="#" id="inqOpen">Inquire</a>
       </nav>
     </div>
   </footer>
@@ -744,6 +747,68 @@
       b.addEventListener('click',function(){ m.classList.toggle('menu-open'); });
       m.querySelectorAll('nav.primary a').forEach(function(a){ a.addEventListener('click',function(){ m.classList.remove('menu-open'); }); });
     }
+  })();
+</script>
+
+<div class="scrim" id="inqScrim" role="dialog" aria-modal="true" aria-labelledby="inqTitle">
+  <div class="prov">
+    <span class="cn tl"></span><span class="cn tr"></span><span class="cn bl"></span><span class="cn br"></span>
+    <button class="x" id="inqClose" aria-label="Close">&times;</button>
+    <div class="pin">
+      <div id="inqBody">
+        <h3 id="inqTitle" style="font-family:'Spectral',serif;font-weight:400;font-size:1.6rem;margin:0 0 10px;">Write to the workshop.</h3>
+        <p style="margin:0 0 8px;color:var(--graphite);">A direct line, read by the maker. The reply comes by email.</p>
+        <form id="inqForm" novalidate>
+          <label class="inq-label" for="inqName">Your name</label>
+          <input class="inq-field" id="inqName" name="name" type="text" required autocomplete="name">
+          <label class="inq-label" for="inqEmail">Your email</label>
+          <input class="inq-field" id="inqEmail" name="email" type="email" required autocomplete="email">
+          <label class="inq-label" for="inqMsg">Your message</label>
+          <textarea class="inq-field" id="inqMsg" name="message" rows="5" required></textarea>
+          <div id="inqCap" style="margin:16px 0 4px;"></div>
+          <p class="inq-label" id="inqNote" style="display:none;color:var(--accent-soft);"></p>
+          <button type="submit" class="btn" id="inqSend" style="margin-top:12px;">Send</button>
+        </form>
+      </div>
+      <div id="inqDone" style="display:none;">
+        <h3 style="font-family:'Spectral',serif;font-weight:400;font-size:1.6rem;margin:0 0 10px;">Received.</h3>
+        <p style="margin:0;color:var(--graphite);">The workshop replies by email.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://js.hcaptcha.com/1/api.js?onload=opInqCapLoad&render=explicit&recaptchacompat=off" async defer></script>
+<script>
+  (function(){
+    var WEB3FORMS_KEY="4088e94c-be72-4d34-9c2b-a9d703e13b83";
+    var SITEKEY="50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+    var scrim=document.getElementById('inqScrim');
+    var capWidget=null, capRendered=false;
+    window.opInqCapLoad=function(){ if(scrim.classList.contains('open')) renderCap(); };
+    function renderCap(){ if(capRendered||!window.hcaptcha) return; capWidget=hcaptcha.render('inqCap',{sitekey:SITEKEY}); capRendered=true; }
+    function note(msg){ var n=document.getElementById('inqNote'); n.textContent=msg; n.style.display='block'; }
+    function open(e){ if(e)e.preventDefault(); scrim.classList.add('open'); renderCap(); document.getElementById('inqClose').focus(); }
+    function close(){ scrim.classList.remove('open'); }
+    document.getElementById('inqOpen').addEventListener('click',open);
+    document.getElementById('inqClose').addEventListener('click',close);
+    scrim.addEventListener('click',function(e){ if(e.target===scrim) close(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&scrim.classList.contains('open')) close(); });
+    document.getElementById('inqForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=document.getElementById('inqName').value.trim();
+      var email=document.getElementById('inqEmail').value.trim();
+      var msg=document.getElementById('inqMsg').value.trim();
+      if(!name||!email||!msg){ note('Please fill all three fields.'); return; }
+      var tok='';
+      if(capRendered&&window.hcaptcha){ tok=hcaptcha.getResponse(capWidget); if(!tok){ note('Please complete the check above.'); return; } }
+      var p={access_key:WEB3FORMS_KEY, subject:'Inquiry: Officina Prima', name:name, email:email, message:msg};
+      if(tok) p['h-captcha-response']=tok;
+      var btn=document.getElementById('inqSend'); btn.disabled=true;
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(p)})
+        .then(function(r){ return r.json(); })
+        .then(function(d){ if(d.success){ document.getElementById('inqBody').style.display='none'; document.getElementById('inqDone').style.display='block'; } else { btn.disabled=false; note('Sending did not go through. Please try once more.'); } })
+        .catch(function(){ btn.disabled=false; note('Sending did not go through. Please try once more.'); });
+    });
   })();
 </script>
 </body>
