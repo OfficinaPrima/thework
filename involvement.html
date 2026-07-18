@@ -200,7 +200,7 @@
     stage.innerHTML =
       '<div class="step-head"><span class="progress">0'+(i+1)+' / 0'+STEPS.length+'</span><span class="ticks">'+ticks(i)+'</span></div>'+
       '<p class="q">'+s.q+'</p><p class="qsub">'+s.sub+'</p>'+opts+
-      '<div class="navrow"><button class="back" id="back"'+(i===0?' hidden':'')+'>&larr; Back</button></div>';
+      '<div class="navrow">'+(i===0?'<a class="btn" href="index.html">&larr; Back to the work</a>':'<button class="back" id="back">&larr; Back</button>')+'</div>';
     stage.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
       answers[s.id]=b.getAttribute('data-v');
       if(s.id==='posture' && answers.posture==='return'){ evaluate(); return; }
