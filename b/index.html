@@ -358,6 +358,18 @@
   .pglyph{width:76px;margin:0 0 16px;}
   .pglyph svg{width:100%;height:auto;display:block;}
 </style>
+<style>
+.botnav{display:none;}
+@media(max-width:680px){
+  nav.primary{display:none!important;}
+  .menu-btn{display:none!important;}
+  .botnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--lift);border-top:1px solid var(--rule);}
+  .botnav a{flex:1;text-align:center;padding:14px 4px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);text-decoration:none;border-right:1px solid var(--rule);}
+  .botnav a:last-child{border-right:none;}
+  .botnav a.current{color:var(--accent);}
+  body{padding-bottom:54px;}
+}
+</style>
 </head>
 <body>
 
@@ -367,8 +379,8 @@
       <span class="wordmark"><span class="dot"></span>Officina&nbsp;Prima<span class="mast-tag">A patronage of invention</span></span>
       <nav class="primary">
         <a href="#work">Works</a>
-        <a href="../method.html">Method</a>
-        <a href="../involvement.html">Involvement</a>
+        <a href="method.html">Method</a>
+        <a href="involvement.html">Involvement</a>
       </nav>
       <button class="menu-btn">Menu</button>
     </div>
@@ -381,7 +393,7 @@
         <h1 class="fade" style="animation-delay:.1s">Seven inventions.<br>One hand.<br>One body of <em>work</em>.</h1>
         <p class="hero-sub fade" style="animation-delay:.2s">Officina Prima holds the work of a single inventor: seven hardware technologies, one body of work. The patrons who see it through carry their names into centuries no fortune can reach.</p>
         <div class="hero-actions fade" style="animation-delay:.3s">
-          <a href="../involvement.html" class="btn">Explore your involvement <span class="arr">→</span></a>
+          <a href="involvement.html" class="btn">Explore your involvement <span class="arr">→</span></a>
         </div>
       </div>
 
@@ -526,7 +538,7 @@
         <div class="pullquote" style="border-left:none; padding-left:0;">
           <blockquote>Capital without a work is forgotten. Invention without capital is captured.</blockquote>
         </div>
-        <p>A patron supplies the means to build, to hold what is built, and to open doors only capital opens. The work supplies what capital cannot buy: a name carried beside it into history. Neither endures without the other. <a href="../method.html" class="link-quiet">Read the method →</a></p>
+        <p>A patron supplies the means to build, to hold what is built, and to open doors only capital opens. The work supplies what capital cannot buy: a name carried beside it into history. Neither endures without the other. <a href="method.html" class="link-quiet">Read the method →</a></p>
       </div>
       <div style="align-self:center;">
         <div class="pullquote">
@@ -544,7 +556,7 @@
         <span class="mono" style="font-size:15px;">§ 03 · Involvement</span>
         <h2>This is patronage.</h2>
         <p>For those who have moved past the question of return, and toward the question of what they leave built. You fund the work's development and own a share of what it earns in the market. Terms are found in conversation. There are no figures on this page.</p>
-        <a href="../involvement.html" class="btn">Explore your involvement <span class="arr">→</span></a>
+        <a href="involvement.html" class="btn">Explore your involvement <span class="arr">→</span></a>
         <p class="mono terms-note">By introduction and conversation. No offer of securities is made on this site.</p>
       </div>
     </div>
@@ -585,8 +597,8 @@
       </div>
       <nav>
         <a href="#work">Works</a>
-        <a href="../method.html">Method</a>
-        <a href="../involvement.html">Involvement</a>
+        <a href="method.html">Method</a>
+        <a href="involvement.html">Involvement</a>
         <a href="#" id="inqOpen">Inquire</a>
       </nav>
     </div>
@@ -608,7 +620,7 @@
         <div class="reveal" id="reveal">
           <p class="mono rlabel" id="p-rlabel"></p>
           <p class="rname" id="p-rname"></p>
-          <a href="../involvement.html" class="btn">Explore your involvement <span>&rarr;</span></a>
+          <a href="involvement.html" class="btn">Explore your involvement <span>&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -811,5 +823,6 @@
     });
   })();
 </script>
+<nav class="botnav"><a href="#work">Works</a><a href="method.html">Method</a><a href="involvement.html">Involvement</a></nav>
 </body>
 </html>
