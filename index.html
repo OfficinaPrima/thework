@@ -359,6 +359,23 @@
   nav.primary a{font-size:11px; padding:0;}
 }
 </style>
+<style>
+@media(max-width:680px){
+  #world{display:none!important;}
+  .stage{display:flex!important;flex-direction:column;align-items:center;gap:30px;margin:34px auto 0;padding:6px 16px 70px;max-width:none;}
+  .fullplate{position:relative!important;left:auto!important;top:auto!important;transform:none!important;width:86%;max-width:340px;}
+  .fullplate .frame{width:100%;}
+  .fullplate::before{content:"";position:absolute;top:-30px;left:50%;width:2px;height:30px;background:var(--accent);transform:translateX(-50%);}
+  .fullplate[data-tech="space"]::before{display:none;}
+  .fullplate[data-tech="space"]{order:1;}
+  .fullplate[data-tech="aero"]{order:2;}
+  .fullplate[data-tech="auto"]{order:3;}
+  .fullplate[data-tech="energy"]{order:4;}
+  .fullplate[data-tech="toys"]{order:5;}
+  .fullplate[data-tech="safety"]{order:6;}
+  .fullplate[data-tech="agri"]{order:7;}
+}
+</style>
 </head>
 <body>
 
@@ -667,6 +684,7 @@
   Object.keys(GRID).forEach(renderPlate);
 
   function place(){
+    if(window.matchMedia('(max-width:680px)').matches){return;}
     const vb=svg.viewBox.baseVal, rect=svg.getBoundingClientRect();
     const sx=rect.width/vb.width, sy=rect.height/vb.height;
     const sRect=stage.getBoundingClientRect();
