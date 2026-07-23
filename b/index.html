@@ -370,6 +370,13 @@
   body{padding-bottom:54px;}
 }
 </style>
+<style>
+@media(max-width:680px){
+  .ann,.anng,.ctx-faint,.star{display:none!important;}
+  #grid{display:none!important;}
+  .stage{margin-top:28px!important;}
+}
+</style>
 </head>
 <body>
 
@@ -668,7 +675,7 @@
     agri:'<svg viewBox="0 0 80 64" aria-hidden="true"><circle class="ln-acc" cx="18" cy="12" r="5.5"/><line class="ln" x1="40" y1="8" x2="40" y2="36"/><path class="ln-acc" stroke-dasharray="2 3" d="M24,16 L36,26 L48,26 L54,36"/><path class="ln" d="M54,54 L54,42 M54,46 C51,45 49,42 49,40 C52,40 54,42 54,44 M54,44 C54,42 56,40 59,40 C59,42 57,45 54,46"/></svg>'
   };
   // centre coordinates in grid units (column, row) -> viewBox units (*100)
-  const GRID = {
+  let GRID = {
     space:{c:1,r:1}, aero:{c:5,r:5}, safety:{c:5,r:13}, energy:{c:7,r:10},
     auto:{c:10,r:10}, toys:{c:2,r:10}, agri:{c:9,r:15}
   };
@@ -679,6 +686,10 @@
         gridG=document.getElementById('grid'), thread=document.getElementById('thread'),
         scrim=document.getElementById('scrim'), reveal=document.getElementById('reveal');
   const VBW=1200, VBH=1700, STEP=100;
+  if(window.matchMedia('(max-width:680px)').matches){
+    GRID={space:{c:6,r:2},aero:{c:6,r:7.5},auto:{c:3.4,r:13},energy:{c:8.6,r:18.5},toys:{c:3.4,r:24},safety:{c:8.6,r:29.5},agri:{c:6,r:35}};
+    svg.setAttribute('viewBox','0 0 1200 3800');
+  }
 
   function renderPlate(t){const d=DATA[t];const pl=document.querySelector('.fullplate[data-tech="'+t+'"]');
     pl.innerHTML='<div class="frame">'+(d.img?'<div class="slot"><span class="mark">+</span><span class="ph">Image forthcoming</span><img class="pimg" src="'+d.img+'" alt="" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.remove()"></div>':'<div class="slot"><span class="mark">+</span><span class="ph">Image forthcoming</span></div>')+
@@ -695,7 +706,7 @@
       const px=offX+GRID[t].c*100*sx, py=offY+GRID[t].r*100*sy;
       pl.style.left=(px-pl.offsetWidth/2)+'px';
       pl.style.top=(py-pl.offsetHeight/2)+'px';
-      pl.style.transform='scale('+(sx*1.5)+')';});
+      pl.style.transform='scale('+(sx*(window.matchMedia('(max-width:680px)').matches?2.2:1.5))+')';});
   }
 
   const p_eyebrow=document.getElementById('p-eyebrow'),p_problem=document.getElementById('p-problem'),p_body=document.getElementById('p-body'),p_rlabel=document.getElementById('p-rlabel'),p_rname=document.getElementById('p-rname');
