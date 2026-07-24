@@ -368,6 +368,7 @@
 </style>
 <style>
 .fullplate .cap{display:flex;align-items:baseline;gap:8px;}
+.fullplate .cap .no{white-space:nowrap;}
 .fullplate .cap .more{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-soft);white-space:nowrap;}
 .fullplate .frame{animation:plateGlow 2.8s ease-in-out infinite;}
 .fullplate:hover .frame,.fullplate:focus-visible .frame{animation:none;}
@@ -750,6 +751,7 @@
   window.addEventListener('resize',refresh);
   window.addEventListener('load',refresh);
   refresh();
+  setTimeout(refresh,150);
 </script>
 <script>
   (function(){
