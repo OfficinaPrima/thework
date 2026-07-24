@@ -367,8 +367,9 @@
 }
 </style>
 <style>
-.fullplate .cap{display:flex;align-items:baseline;gap:8px;}
-.fullplate .cap .no{white-space:nowrap;}
+.fullplate .cap{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+.fullplate .cap .no{white-space:nowrap;letter-spacing:.02em;}
+.fullplate .cap .nm{white-space:nowrap;}
 .fullplate .cap .more{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-soft);white-space:nowrap;}
 .fullplate .frame{animation:plateGlow 2.8s ease-in-out infinite;}
 .fullplate:hover .frame,.fullplate:focus-visible .frame{animation:none;}
