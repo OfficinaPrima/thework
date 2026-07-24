@@ -377,6 +377,14 @@
   .stage{margin-top:28px!important;}
 }
 </style>
+<style>
+.fullplate .cap{display:flex;align-items:baseline;gap:8px;}
+.fullplate .cap .more{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-soft);white-space:nowrap;}
+.fullplate .frame{animation:plateGlow 2.8s ease-in-out infinite;}
+.fullplate:hover .frame,.fullplate:focus-visible .frame{animation:none;}
+@keyframes plateGlow{0%,100%{box-shadow:0 0 0 0 rgba(232,199,90,0);}50%{box-shadow:0 0 0 3px rgba(232,199,90,.45);}}
+@media(prefers-reduced-motion:reduce){.fullplate .frame{animation:none;}}
+</style>
 </head>
 <body>
 
@@ -693,7 +701,7 @@
 
   function renderPlate(t){const d=DATA[t];const pl=document.querySelector('.fullplate[data-tech="'+t+'"]');
     pl.innerHTML='<div class="frame">'+(d.img?'<div class="slot"><span class="mark">+</span><span class="ph">Image forthcoming</span><img class="pimg" src="'+d.img+'" alt="" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.remove()"></div>':'<div class="slot"><span class="mark">+</span><span class="ph">Image forthcoming</span></div>')+
-      '<div class="cap"><span class="no">'+d.no+'</span><span class="nm">'+d.name+'</span></div></div>';
+      '<div class="cap"><span class="no">'+d.no+'</span><span class="nm">'+d.name+'</span><span class="more">More info &rarr;</span></div></div>';
     pl.setAttribute('tabindex','0');pl.setAttribute('role','button');pl.setAttribute('aria-label',d.no+', '+d.name+'. Open.');}
   Object.keys(GRID).forEach(renderPlate);
 
