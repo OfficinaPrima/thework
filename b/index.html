@@ -378,12 +378,20 @@
 }
 </style>
 <style>
-.fullplate .cap{display:flex;align-items:baseline;gap:8px;}
+.fullplate .cap{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+.fullplate .cap .no{white-space:nowrap;letter-spacing:.02em;}
+.fullplate .cap .nm{white-space:nowrap;}
 .fullplate .cap .more{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-soft);white-space:nowrap;}
 .fullplate .frame{animation:plateGlow 2.8s ease-in-out infinite;}
 .fullplate:hover .frame,.fullplate:focus-visible .frame{animation:none;}
 @keyframes plateGlow{0%,100%{box-shadow:0 0 0 0 rgba(232,199,90,0);}50%{box-shadow:0 0 0 3px rgba(232,199,90,.45);}}
 @media(prefers-reduced-motion:reduce){.fullplate .frame{animation:none;}}
+</style>
+<style>
+@media(max-width:680px){
+  .scrim{align-items:flex-start;padding:14px;overflow-y:auto;z-index:100;}
+  .prov{max-width:none;}
+}
 </style>
 </head>
 <body>
@@ -770,6 +778,7 @@
   window.addEventListener('resize',refresh);
   window.addEventListener('load',refresh);
   refresh();
+  setTimeout(refresh,150);
 </script>
 <script>
   (function(){
