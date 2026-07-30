@@ -104,12 +104,15 @@
 </style>
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <style>
+.botnav{display:none;}
 @media(max-width:680px){
+  nav.primary{display:none!important;}
   .menu-btn{display:none!important;}
-  .mast-tag{display:none!important;}
-  .masthead .wrap{flex-wrap:wrap; height:auto; padding-top:12px; padding-bottom:10px; row-gap:9px;}
-  nav.primary{display:flex!important; position:static!important; flex-direction:row!important; flex-basis:100%; justify-content:flex-start; gap:24px; background:none!important; border:none!important; padding:0!important;}
-  nav.primary a{font-size:11px; padding:0;}
+  .botnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--lift);border-top:1px solid var(--rule);}
+  .botnav a{flex:1;text-align:center;padding:14px 4px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);text-decoration:none;border-right:1px solid var(--rule);}
+  .botnav a:last-child{border-right:none;}
+  .botnav a.current{color:var(--accent);}
+  body{padding-bottom:54px;}
 }
 </style>
 </head>
@@ -335,5 +338,6 @@
     }
   })();
 </script>
+<nav class="botnav"><a href="index.html#work">Works</a><a href="method.html">Method</a><a class="current" href="involvement.html">Involvement</a></nav>
 </body>
 </html>
