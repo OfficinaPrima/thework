@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDKZ8T3F82"></script>
@@ -11,7 +11,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Officina Prima · Involvement</title>
+<title>Officina Prima · Partecipazione</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -122,22 +122,22 @@
     <div class="wrap">
       <a class="wordmark" href="index.html"><span class="dot"></span>Officina&nbsp;Prima</a>
       <nav class="primary">
-        <a href="index.html#work">Works</a>
-        <a href="method.html">Method</a>
-        <a href="involvement.html" class="current">Involvement</a>
+        <a href="index.html#work">Opere</a>
+        <a href="method.html">Metodo</a>
+        <a href="involvement.html" class="current">Partecipazione</a>
       </nav>
-      <span class="langtog" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--ink);margin-left:14px;">EN <a href="it/involvement.html" style="color:var(--graphite);">IT</a></span>
+      <span class="langtog" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--ink);margin-left:14px;"><a href="../involvement.html" style="color:var(--graphite);">EN</a> IT</span>
       <button class="menu-btn">Menu</button>
     </div>
   </header>
 
   <section class="intro">
     <div class="wrap">
-      <span class="idx">§ Involvement</span>
-      <h1>Explore your involvement</h1>
-      <p>This is patronage in the oldest sense: backing a maker, and work meant to outlast everyone involved. You fund a technology's development, and you own a share of what it earns in the market. The work itself remains the maker's.</p>
-      <p>What it asks for is a posture: the work first, the horizon long, the risk understood and accepted. A few questions to see whether we're a fit. If we are, the next step is a conversation.</p>
-      <p class="fineprint">No figures, terms, or offering here &middot; those belong in the conversation</p>
+      <span class="idx">§ Partecipazione</span>
+      <h1>Scopra la Sua partecipazione</h1>
+      <p>Questo è mecenatismo nel senso più antico: sostenere un creatore, e un’opera destinata a sopravvivere a tutti i coinvolti. Lei finanzia lo sviluppo di una tecnologia, e possiede una quota di ciò che essa guadagna sul mercato. L’opera stessa resta del creatore.</p>
+      <p>Ciò che richiede è un atteggiamento: l’opera prima di tutto, l’orizzonte lungo, il rischio compreso e accettato. Poche domande per vedere se siamo in sintonia. Se lo siamo, il passo successivo è una conversazione.</p>
+      <p class="fineprint">Nessuna cifra, termine o offerta qui &middot; il loro posto è nella conversazione</p>
     </div>
   </section>
 
@@ -153,7 +153,7 @@
   <footer class="colophon">
     <div class="wrap">
       <span class="mono">Officina Prima</span>
-      <span class="mono">A workshop of the first order</span>
+      <span class="mono">Un’officina di prim’ordine</span>
     </div>
   </footer>
 
@@ -161,44 +161,44 @@
   const STEPS = [
     {
       id:'posture',
-      q:"First, what's your posture toward this?",
-      sub:"A few questions to see whether maker and patron align.",
+      q:"Per cominciare, qual è il Suo atteggiamento verso tutto questo?",
+      sub:"Poche domande per vedere se creatore e mecenate sono in sintonia.",
       type:'list',
       opts:[
-        {k:'A', t:"I want to back the work and the mission. Ownership matters, but the work comes first.", v:'mission'},
-        {k:'B', t:"I'm here primarily for the financial return.", v:'return'}
+        {k:'A', t:"Voglio sostenere l’opera e la missione. La proprietà conta, ma l’opera viene prima.", v:'mission'},
+        {k:'B', t:"Sono qui soprattutto per il rendimento finanziario.", v:'return'}
       ]
     },
     {
       id:'where',
-      q:"Where would you be backing this from?",
-      sub:"Asked so the terms can fit where you are.",
+      q:"Da dove sosterrebbe tutto questo?",
+      sub:"Lo chiediamo perché i termini possano adattarsi a dove Lei si trova.",
       type:'list',
       opts:[
-        {k:'A',t:"Within the United States",v:'us'},
-        {k:'B',t:"Outside the United States",v:'intl'}
+        {k:'A',t:"Dagli Stati Uniti",v:'us'},
+        {k:'B',t:"Fuori dagli Stati Uniti",v:'intl'}
       ]
     },
     {
       id:'which',
-      q:"Which of the work draws you, or is it the whole vision?",
-      sub:"This only tells us where to begin the conversation.",
+      q:"Quale parte dell’opera La attrae, o è l’intera visione?",
+      sub:"Questo ci dice solo da dove iniziare la conversazione.",
       type:'grid',
       opts:[
-        {k:'',t:"Space",v:'space'},{k:'',t:"Aerospace",v:'aero'},
-        {k:'',t:"Automotive",v:'auto'},{k:'',t:"Energy",v:'energy'},
-        {k:'',t:"Education",v:'toys'},{k:'',t:"Personal Safety",v:'safety'},
-        {k:'',t:"Agriculture",v:'agri'},{k:'',t:"The broader vision",v:'vision'}
+        {k:'',t:"Spazio",v:'space'},{k:'',t:"Aerospazio",v:'aero'},
+        {k:'',t:"Automotive",v:'auto'},{k:'',t:"Energia",v:'energy'},
+        {k:'',t:"Educazione",v:'toys'},{k:'',t:"Sicurezza personale",v:'safety'},
+        {k:'',t:"Agricoltura",v:'agri'},{k:'',t:"L’intera visione",v:'vision'}
       ]
     },
     {
       id:'risk',
-      q:"Last one. Frontier invention is early-stage, capital-intensive, and long-horizon. How does that sit with you?",
-      sub:"Said plainly, so the fit is honest on both sides.",
+      q:"L’ultima. L’invenzione di frontiera è in fase iniziale, richiede molto capitale e ha un orizzonte lungo. Come si pone rispetto a tutto questo?",
+      sub:"Detto con franchezza, perché l’intesa sia onesta da entrambe le parti.",
       type:'list',
       opts:[
-        {k:'A',t:"That's the point. I'm at home with it.", v:'comfortable'},
-        {k:'B',t:"I'd want something nearer-term and lower-risk.", v:'averse'}
+        {k:'A',t:"È proprio questo il punto. Mi ci trovo a mio agio.", v:'comfortable'},
+        {k:'B',t:"Preferirei qualcosa di più a breve termine e a minor rischio.", v:'averse'}
       ]
     }
   ];
@@ -221,7 +221,7 @@
     stage.innerHTML =
       '<div class="step-head"><span class="progress">0'+(i+1)+' / 0'+STEPS.length+'</span><span class="ticks">'+ticks(i)+'</span></div>'+
       '<p class="q">'+s.q+'</p><p class="qsub">'+s.sub+'</p>'+opts+
-      '<div class="navrow">'+(i===0?'<a class="btn" href="index.html">&larr; Back to the work</a>':'<button class="back" id="back">&larr; Back</button>')+'</div>';
+      '<div class="navrow">'+(i===0?'<a class="btn" href="index.html">&larr; Torna all’opera</a>':'<button class="back" id="back">&larr; Indietro</button>')+'</div>';
     stage.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
       answers[s.id]=b.getAttribute('data-v');
       if(s.id==='posture' && answers.posture==='return'){ evaluate(); return; }
@@ -231,7 +231,7 @@
     if(back) back.addEventListener('click',()=>{ if(i>0){ i--; renderStep(); } });
   }
 
-  const TECH = {agri:"the technology that frees sunlight from the sky so food can grow anywhere",toys:"the workshop's smart toy for faster early learning",auto:"the system for saving passengers when a crash can't be avoided",energy:"the workshop's system for putting the sun to work day and night",safety:"the safety device that prevents the accident instead of surviving it",aero:"the survival system for saving occupants when an aircraft can't be saved",space:"the workshop's asteroid capturing system",vision:"the whole vision, where each frontier clears one more obstacle from our advancement as a species"};
+  const TECH = {agri:"la tecnologia che libera la luce del sole dal cielo perché il cibo possa crescere ovunque",toys:"il giocattolo intelligente dell’officina per un apprendimento precoce più rapido",auto:"il sistema per salvare i passeggeri quando uno scontro non può essere evitato",energy:"il sistema dell’officina per mettere il sole al lavoro giorno e notte",safety:"il dispositivo di sicurezza che previene l’incidente invece di sopravvivergli",aero:"il sistema di sopravvivenza per salvare gli occupanti quando un velivolo non può essere salvato",space:"il sistema dell’officina per la cattura degli asteroidi",vision:"l’intera visione, in cui ogni frontiera rimuove un ostacolo in più dal nostro progresso come specie"};
 
   /* ===== Booking + answer capture ===== */
   /* 1) Paste your Calendly event link between the quotes, e.g. https://calendly.com/you/intro */
@@ -242,10 +242,10 @@
   var FORM_ENDPOINT = "";
 
   const LABELS = {
-    posture:{mission:"Backs the mission first",return:"Return-first"},
-    where:{us:"Within the United States",intl:"Outside the United States"},
-    which:{agri:"Agriculture",toys:"Education",auto:"Automotive",energy:"Energy",safety:"Personal Safety",aero:"Aerospace",space:"Space",vision:"The broader vision"},
-    risk:{comfortable:"At home with the horizon",averse:"Wants nearer-term, lower-risk"}
+    posture:{mission:"Sostiene prima la missione",return:"Prima il rendimento"},
+    where:{us:"Dagli Stati Uniti",intl:"Fuori dagli Stati Uniti"},
+    which:{agri:"Agricoltura",toys:"Educazione",auto:"Automotive",energy:"Energia",safety:"Sicurezza personale",aero:"Aerospazio",space:"Spazio",vision:"L’intera visione"},
+    risk:{comfortable:"A proprio agio con l’orizzonte",averse:"Vuole breve termine, minor rischio"}
   };
   function label(f){ return (LABELS[f] && LABELS[f][answers[f]]) || answers[f] || "not given"; }
   function answerSummary(){
@@ -275,24 +275,24 @@
       const focus = TECH[answers.which] || "the work";
       stage.innerHTML =
         '<div class="outcome">'+
-        '<p class="mono eyebrow">We may be a fit</p>'+
-        '<h2>Then the next step is a conversation.</h2>'+
+        '<p class="mono eyebrow">Potremmo essere in sintonia</p>'+
+        '<h2>Allora il passo successivo è una conversazione.</h2>'+
         '<p>You lead with the mission and you\u2019re at home with the horizon \u2014 which is exactly the posture this is built for. The specific technology and the terms are settled directly, in conversation, where they belong.</p>'+
-        '<p>We\u2019d talk about '+focus+' \u2014 what it is, where it stands, and what backing it would actually look like.'+(answers.which==='aero'?' A deck may be shared if we are aligned.':'')+'</p>'+
+        '<p>We\u2019d talk about '+focus+' \u2014 what it is, where it stands, and what backing it would actually look like.'+(answers.which==='aero'?' Un dossier può essere condiviso se siamo in sintonia.':'')+'</p>'+
         '<div class="recap">'+
-          '<p class="recap-h">Your answers, carried into the call</p>'+
-          '<div class="recap-row"><span>Posture</span><b>'+label('posture')+'</b></div>'+
-          '<div class="recap-row"><span>Focus</span><b>'+label('which')+'</b></div>'+
-          '<div class="recap-row"><span>Region</span><b>'+label('where')+'</b></div>'+
-          '<div class="recap-row"><span>Horizon</span><b>'+label('risk')+'</b></div>'+
+          '<p class="recap-h">Le Sue risposte, portate nella chiamata</p>'+
+          '<div class="recap-row"><span>Atteggiamento</span><b>'+label('posture')+'</b></div>'+
+          '<div class="recap-row"><span>Ambito</span><b>'+label('which')+'</b></div>'+
+          '<div class="recap-row"><span>Regione</span><b>'+label('where')+'</b></div>'+
+          '<div class="recap-row"><span>Orizzonte</span><b>'+label('risk')+'</b></div>'+
         '</div>'+
         '<div class="h-captcha" id="hcapBox" style="margin:26px 0 8px;"></div>'+
-        '<p class="mono" id="capNote" style="display:none;color:var(--accent-soft);margin:0 0 12px;">Please complete the check above before booking.</p>'+
+        '<p class="mono" id="capNote" style="display:none;color:var(--accent-soft);margin:0 0 12px;">Completi la verifica qui sopra prima di prenotare.</p>'+
         '<div class="actionrow">'+
-          '<a class="btn" href="#" id="bookLink">Book the conversation <span>&rarr;</span></a>'+
-          (answers.which==='energy' ? '<a class="btn-alt" href="lighting-offset-calculator.html" target="_blank" rel="noopener">Potential impact <span>&rarr;</span></a>' : '')+
+          '<a class="btn" href="#" id="bookLink">Prenoti la conversazione <span>&rarr;</span></a>'+
+          (answers.which==='energy' ? '<a class="btn-alt" href="../lighting-offset-calculator.html" target="_blank" rel="noopener">Impatto potenziale <span>&rarr;</span></a>' : '')+
         '</div>'+
-        '<p class="disclaimer">Nothing on this page is an offer to sell or a solicitation to buy any security. No figures, returns, or terms are represented here. Any participation would be discussed privately and documented separately.</p>'+
+        '<p class="disclaimer">Nulla in questa pagina costituisce un’offerta di vendita o una sollecitazione all’acquisto di alcun titolo. Qui non sono rappresentati cifre, rendimenti o termini. Qualsiasi partecipazione sarebbe discussa privatamente e documentata separatamente.</p>'+
         '</div>';
       var bl = document.getElementById('bookLink');
       if(window.hcaptcha){ var hb=document.getElementById('hcapBox'); if(hb && !hb.hasChildNodes()){ try{ hcaptcha.render('hcapBox', {sitekey:'50b2fe65-b00b-4b9e-ad62-3ba471098be2'}); }catch(e){} } }
@@ -316,7 +316,7 @@
   function showNotFit(reason){
     stage.innerHTML =
       '<div class="outcome">'+
-      '<p class="mono eyebrow">An honest fit</p>'+
+      '<p class="mono eyebrow">Un’intesa onesta</p>'+
       '<h2>This may not be the right fit \u2014 and that\u2019s fine.</h2>'+
       '<p>'+reason+'</p>'+
       '<p>The workshop would rather be straight with you than take your time on something misaligned. If where you are changes \u2014 or you simply want to see more of the work \u2014 the door stays open.</p>'+
@@ -339,6 +339,6 @@
     }
   })();
 </script>
-<nav class="botnav"><a href="index.html#work">Works</a><a href="method.html">Method</a><a class="current" href="involvement.html">Involvement</a></nav>
+<nav class="botnav"><a href="index.html#work">Opere</a><a href="method.html">Metodo</a><a class="current" href="involvement.html">Partecipazione</a></nav>
 </body>
 </html>
