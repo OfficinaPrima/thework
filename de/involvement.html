@@ -136,8 +136,8 @@
         <a href="method.html">Methode</a>
         <a href="involvement.html" class="current">Beteiligung</a>
       </nav>
-      <div class="langdd"><button class="langbtn" aria-label="Language">🇩🇪</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="../es/involvement.html">🇪🇸 Español</a><a href="involvement.html" class="cur">🇩🇪 Deutsch</a><a href="../ar/involvement.html">🇦🇪 العربية</a></div></div>
-      <button class="menu-btn">Menu</button>
+      <div class="langdd"><button class="langbtn" aria-label="Sprache wählen">🇩🇪</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="../es/involvement.html">🇪🇸 Español</a><a href="involvement.html" class="cur">🇩🇪 Deutsch</a><a href="../ar/involvement.html">🇦🇪 العربية</a></div></div>
+      <button class="menu-btn">Menü</button>
     </div>
   </header>
 
@@ -203,11 +203,11 @@
     },
     {
       id:'risk',
-      q:"Die letzte. Grenzerfindung ist früh, kapitalintensiv und langfristig. Wie stehen Sie dazu?",
+      q:"Die letzte. Diese Technologien befinden sich in einem frühen Entwicklungsstadium. Sie benötigen viel Kapital und einen langen Zeithorizont. Wie stehen Sie dazu?",
       sub:"Offen gesagt, damit die Passung auf beiden Seiten ehrlich ist.",
       type:'list',
       opts:[
-        {k:'A',t:"Genau das ist der Punkt. Ich bin damit zu Hause.", v:'comfortable'},
+        {k:'A',t:"Genau das ist der Punkt. Ich verstehe das Risiko und bin mit einem langfristigen Engagement einverstanden.", v:'comfortable'},
         {k:'B',t:"Ich möchte etwas Kurzfristigeres mit geringerem Risiko.", v:'averse'}
       ]
     }
@@ -241,7 +241,7 @@
     if(back) back.addEventListener('click',()=>{ if(i>0){ i--; renderStep(); } });
   }
 
-  const TECH = {agri:"die Technologie, die das Sonnenlicht vom Himmel befreit, damit Nahrung überall wachsen kann",toys:"das kluge Spielzeug der Werkstatt für schnelleres frühes Lernen",auto:"das System, das Passagiere rettet, wenn ein Zusammenstoß nicht zu vermeiden ist",energy:"das System der Werkstatt, das die Sonne Tag und Nacht arbeiten lässt",safety:"das Sicherheitsgerät, das den Unfall verhindert, statt ihn zu überleben",aero:"das Überlebenssystem, das Insassen rettet, wenn ein Flugzeug nicht zu retten ist",space:"das System der Werkstatt zum Einfangen von Asteroiden",vision:"die ganze Vision, in der jede Frontier ein weiteres Hindernis aus unserem Fortschritt als Spezies räumt"};
+  const TECH = {agri:"die Technologie, die das Sonnenlicht vom Himmel befreit, damit Nahrung überall wachsen kann",toys:"das kluge Spielzeug der Werkstatt für schnelleres frühes Lernen",auto:"das System, das Passagiere rettet, wenn ein Zusammenstoß nicht zu vermeiden ist",energy:"das System der Werkstatt, das die Sonne Tag und Nacht arbeiten lässt",safety:"das Sicherheitsgerät, das den Unfall verhindert, statt ihn zu überleben",aero:"das Überlebenssystem, das Insassen rettet, wenn ein Flugzeug nicht zu retten ist",space:"das System der Werkstatt zum Einfangen von Asteroiden",vision:"die ganze Vision, in der jedes Feld ein weiteres Hindernis aus unserem Fortschritt als Spezies räumt"};
 
   /* ===== Booking + answer capture ===== */
   /* 1) Paste your Calendly event link between the quotes, e.g. https://calendly.com/you/intro */
@@ -255,7 +255,7 @@
     posture:{mission:"Fördert zuerst die Mission",return:"Rendite zuerst"},
     where:{us:"Innerhalb der Vereinigten Staaten",intl:"Außerhalb der Vereinigten Staaten"},
     which:{agri:"Landwirtschaft",toys:"Bildung",auto:"Automobil",energy:"Energie",safety:"Persönliche Sicherheit",aero:"Luftfahrt",space:"Weltraum",vision:"Die ganze Vision"},
-    risk:{comfortable:"Mit dem Horizont zu Hause",averse:"Will kurzfristiger, geringeres Risiko"}
+    risk:{comfortable:"Langfristiger Horizont akzeptiert",averse:"Will kurzfristiger, geringeres Risiko"}
   };
   function label(f){ return (LABELS[f] && LABELS[f][answers[f]]) || answers[f] || "not given"; }
   function answerSummary(){
@@ -278,17 +278,22 @@
     }catch(e){}
   }
 
+  const NOTFIT = {
+    return_first:"Officina Prima ist für Mäzene gebaut, die die Mission voranstellen — Eigentum ist real und willkommen, aber es folgt dem Werk, statt es zu führen.",
+    risk_mismatch:"Officina Prima lebt am frühen, kapitalintensiven, langfristigen Ende der Erfindung — und das ist nicht für jeden, was überhaupt kein Urteil ist."
+  };
+
   function evaluate(){
     const aligned = answers.posture==='mission' && answers.risk==='comfortable';
     if(aligned){
       const intl = answers.where==='intl';
-      const focus = TECH[answers.which] || "the work";
+      const focus = TECH[answers.which] || "das Werk";
       stage.innerHTML =
         '<div class="outcome">'+
         '<p class="mono eyebrow">Wir könnten zueinander passen</p>'+
         '<h2>Dann ist der nächste Schritt ein Gespräch.</h2>'+
-        '<p>Sie stellen die Mission voran und sind mit dem Horizont zu Hause — genau die Haltung, für die dies gebaut ist. Die konkrete Technologie und die Bedingungen werden direkt geklärt, im Gespräch, wohin sie gehören.</p>'+
-        '<p>Wir würden sprechen über '+focus+' — was es ist, wo es steht, und was es wirklich hieße, es zu fördern.'+(answers.which==='aero'?' Ein Dossier kann geteilt werden, wenn wir zueinander passen.':'')+'</p>'+
+        '<p>Sie stellen die Mission voran und sind mit dem langen Horizont einverstanden — genau die Haltung, für die dies gebaut ist. Die konkrete Technologie und die Bedingungen werden direkt geklärt, im Gespräch, wohin sie gehören.</p>'+
+        '<p>Gesprächsthema: '+focus+'. Wir besprechen den Entwicklungsstand und was eine Förderung konkret bedeuten würde.'+(answers.which==='aero'?' Ein Dossier kann geteilt werden, wenn wir zueinander passen.':'')+'</p>'+
         '<div class="recap">'+
           '<p class="recap-h">Ihre Antworten, mitgenommen in das Gespräch</p>'+
           '<div class="recap-row"><span>Haltung</span><b>'+label('posture')+'</b></div>'+
@@ -315,11 +320,9 @@
         if(window.Calendly && u!=="#"){ ev.preventDefault(); Calendly.initPopupWidget({url:u}); }
       }); }
     } else {
-      const reason = answers.posture==='return'
-        ? "Officina Prima ist für Mäzene gebaut, die die Mission voranstellen — Eigentum ist real und willkommen, aber es folgt dem Werk, statt es zu führen."
-        : "Officina Prima lebt am frühen, kapitalintensiven, langfristigen Ende der Erfindung — und das ist nicht für jeden, was überhaupt kein Urteil ist.";
-      try { localStorage.setItem('op_closed', reason); } catch(e){}
-      showNotFit(reason);
+      const code = answers.posture==='return' ? 'return_first' : 'risk_mismatch';
+      try { localStorage.setItem('op_closed', code); } catch(e){}
+      showNotFit(NOTFIT[code]);
     }
   }
 
@@ -335,7 +338,7 @@
 
   let closedReason = null;
   try { closedReason = localStorage.getItem('op_closed'); } catch(e){}
-  if(closedReason){ showNotFit(closedReason); } else { renderStep(); }
+  if(NOTFIT[closedReason]){ showNotFit(NOTFIT[closedReason]); } else { if(closedReason){ try{ localStorage.removeItem('op_closed'); }catch(e){} } renderStep(); }
 
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>

@@ -150,8 +150,8 @@ h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Sp
         <a href="method.html">المنهج</a>
         <a href="involvement.html" class="current">المشاركة</a>
       </nav>
-      <div class="langdd"><button class="langbtn" aria-label="Language">🇦🇪</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="../es/involvement.html">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="involvement.html" class="cur">🇦🇪 العربية</a></div></div>
-      <button class="menu-btn">Menu</button>
+      <div class="langdd"><button class="langbtn" aria-label="اختيار اللغة">🇦🇪</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="../es/involvement.html">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="involvement.html" class="cur">🇦🇪 العربية</a></div></div>
+      <button class="menu-btn">القائمة</button>
     </div>
   </header>
 
@@ -217,11 +217,11 @@ h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Sp
     },
     {
       id:'risk',
-      q:"السؤال الأخير. اختراع الجبهات مبكرُ المرحلة، كثيفُ رأس المال، طويلُ الأفق. فكيف يقع ذلك عندكم؟",
+      q:"السؤال الأخير. هذه التقنيات في مراحل تطويرٍ مبكرة، وتحتاج إلى رأس مالٍ كبير والتزامٍ طويل الأجل. فكيف تنظرون إلى ذلك؟",
       sub:"قيل بوضوح، ليكون التوافق صادقًا من الجانبين.",
       type:'list',
       opts:[
-        {k:'A',t:"هذا هو المقصود بعينه. أنا مطمئنٌ إليه تمامًا.", v:'comfortable'},
+        {k:'A',t:"هذا هو المقصود بعينه. أفهم طبيعة المخاطر وأتقبّل الالتزام طويل الأجل.", v:'comfortable'},
         {k:'B',t:"أفضّل شيئًا أقرب أجلًا وأقل مخاطرة.", v:'averse'}
       ]
     }
@@ -255,7 +255,7 @@ h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Sp
     if(back) back.addEventListener('click',()=>{ if(i>0){ i--; renderStep(); } });
   }
 
-  const TECH = {agri:"التقنية التي تحرر ضوء الشمس من السماء لينمو الغذاء في أي مكان",toys:"لعبة الورشة الذكية لتعلمٍ مبكرٍ أسرع",auto:"نظام إنقاذ الركاب حين يتعذر تفادي التصادم",energy:"نظام الورشة لتشغيل الشمس ليلَ نهار",safety:"جهاز السلامة الذي يمنع الحادث بدل النجاة منه",aero:"نظام النجاة لإنقاذ من في الطائرة حين يتعذر إنقاذها",space:"نظام الورشة لالتقاط الكويكبات",vision:"الرؤية كلها، حيث تزيح كل جبهةٍ عقبةً أخرى من طريق تقدمنا كنوع"};
+  const TECH = {agri:"التقنية التي تحرر ضوء الشمس من السماء لينمو الغذاء في أي مكان",toys:"لعبة الورشة الذكية لتعلمٍ مبكرٍ أسرع",auto:"نظام إنقاذ الركاب حين يتعذر تفادي التصادم",energy:"نظام الورشة لتشغيل الشمس ليلَ نهار",safety:"جهاز السلامة الذي يمنع الحادث بدل النجاة منه",aero:"نظام النجاة لإنقاذ من في الطائرة حين يتعذر إنقاذها",space:"نظام الورشة لالتقاط الكويكبات",vision:"الرؤية كلها، حيث يزيح كل ميدانٍ عقبةً أخرى من طريق تقدمنا كنوع"};
 
   /* ===== Booking + answer capture ===== */
   /* 1) Paste your Calendly event link between the quotes, e.g. https://calendly.com/you/intro */
@@ -269,7 +269,7 @@ h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Sp
     posture:{mission:"الرسالة أولًا",return:"العائد أولًا"},
     where:{us:"داخل الولايات المتحدة",intl:"خارج الولايات المتحدة"},
     which:{agri:"الزراعة",toys:"التعليم",auto:"السيارات",energy:"الطاقة",safety:"السلامة الشخصية",aero:"الطيران",space:"الفضاء",vision:"الرؤية الأوسع"},
-    risk:{comfortable:"مطمئنٌ إلى الأفق",averse:"يريد أقرب أجلًا وأقل مخاطرة"}
+    risk:{comfortable:"متقبّلٌ للأفق الطويل والمخاطر",averse:"يريد أقرب أجلًا وأقل مخاطرة"}
   };
   function label(f){ return (LABELS[f] && LABELS[f][answers[f]]) || answers[f] || "not given"; }
   function answerSummary(){
@@ -292,17 +292,22 @@ h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Sp
     }catch(e){}
   }
 
+  const NOTFIT = {
+    return_first:"بُنيت Officina Prima لرعاةٍ يقدّمون الرسالة أولًا — الملكية حقيقية ومرحّبٌ بها، لكنها تتبع العمل ولا تقوده.",
+    risk_mismatch:"تعيش Officina Prima عند الطرف المبكر، الكثيف رأس المال، الطويل الأفق من الاختراع — وهو ليس للجميع، وليس في ذلك حكمٌ على أحد."
+  };
+
   function evaluate(){
     const aligned = answers.posture==='mission' && answers.risk==='comfortable';
     if(aligned){
       const intl = answers.where==='intl';
-      const focus = TECH[answers.which] || "the work";
+      const focus = TECH[answers.which] || "العمل";
       stage.innerHTML =
         '<div class="outcome">'+
         '<p class="mono eyebrow">قد نكون متوافقين</p>'+
         '<h2>إذًا الخطوة التالية حوار.</h2>'+
-        '<p>أنتم تقدّمون الرسالةَ أولًا وأنتم مطمئنون إلى الأفق — وهذا تحديدًا الموقف الذي بُني له هذا كله. أما التقنية بعينها والشروط فتُحسم مباشرةً، في الحوار، حيث مكانها.</p>'+
-        '<p>سنتحدث عن '+focus+' — ما هي، وأين تقف، وماذا يعني دعمها فعلًا.'+(answers.which==='aero'?' ويمكن مشاركة ملفٍ تعريفي إن كنا متوافقين.':'')+'</p>'+
+        '<p>أنتم تقدّمون الرسالةَ أولًا وأنتم متقبّلون للأفق الطويل — وهذا تحديدًا الموقف الذي بُني له هذا كله. أما التقنية بعينها والشروط فتُحسم مباشرةً، في الحوار، حيث مكانها.</p>'+
+        '<p>محور الحوار: '+focus+'. سنناقش وضع المشروع وما يتطلبه دعمه.'+(answers.which==='aero'?' ويمكن مشاركة ملفٍ تعريفي إن كنا متوافقين.':'')+'</p>'+
         '<div class="recap">'+
           '<p class="recap-h">إجاباتكم، محمولةً إلى المكالمة</p>'+
           '<div class="recap-row"><span>الموقف</span><b>'+label('posture')+'</b></div>'+
@@ -329,11 +334,9 @@ h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Sp
         if(window.Calendly && u!=="#"){ ev.preventDefault(); Calendly.initPopupWidget({url:u}); }
       }); }
     } else {
-      const reason = answers.posture==='return'
-        ? "بُنيت Officina Prima لرعاةٍ يقدّمون الرسالة أولًا — الملكية حقيقية ومرحّبٌ بها، لكنها تتبع العمل ولا تقوده."
-        : "تعيش Officina Prima عند الطرف المبكر، الكثيف رأس المال، الطويل الأفق من الاختراع — وهو ليس للجميع، وليس في ذلك حكمٌ على أحد.";
-      try { localStorage.setItem('op_closed', reason); } catch(e){}
-      showNotFit(reason);
+      const code = answers.posture==='return' ? 'return_first' : 'risk_mismatch';
+      try { localStorage.setItem('op_closed', code); } catch(e){}
+      showNotFit(NOTFIT[code]);
     }
   }
 
@@ -349,7 +352,7 @@ h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Sp
 
   let closedReason = null;
   try { closedReason = localStorage.getItem('op_closed'); } catch(e){}
-  if(closedReason){ showNotFit(closedReason); } else { renderStep(); }
+  if(NOTFIT[closedReason]){ showNotFit(NOTFIT[closedReason]); } else { if(closedReason){ try{ localStorage.removeItem('op_closed'); }catch(e){} } renderStep(); }
 
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>

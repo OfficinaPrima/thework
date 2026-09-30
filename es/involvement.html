@@ -136,8 +136,8 @@
         <a href="method.html">Método</a>
         <a href="involvement.html" class="current">Participación</a>
       </nav>
-      <div class="langdd"><button class="langbtn" aria-label="Language">🇪🇸</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="involvement.html" class="cur">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="../ar/involvement.html">🇦🇪 العربية</a></div></div>
-      <button class="menu-btn">Menu</button>
+      <div class="langdd"><button class="langbtn" aria-label="Seleccionar idioma">🇪🇸</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="involvement.html" class="cur">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="../ar/involvement.html">🇦🇪 العربية</a></div></div>
+      <button class="menu-btn">Menú</button>
     </div>
   </header>
 
@@ -207,7 +207,7 @@
       sub:"Dicho con franqueza, para que el encaje sea honesto por ambas partes.",
       type:'list',
       opts:[
-        {k:'A',t:"Ese es justamente el punto. Me siento en casa con ello.", v:'comfortable'},
+        {k:'A',t:"Ese es justamente el punto. Comprendo el riesgo y me siento cómodo con un horizonte a largo plazo.", v:'comfortable'},
         {k:'B',t:"Preferiría algo de plazo más corto y menor riesgo.", v:'averse'}
       ]
     }
@@ -255,7 +255,7 @@
     posture:{mission:"Respalda primero la misión",return:"Primero el rendimiento"},
     where:{us:"Dentro de los Estados Unidos",intl:"Fuera de los Estados Unidos"},
     which:{agri:"Agricultura",toys:"Educación",auto:"Automoción",energy:"Energía",safety:"Seguridad personal",aero:"Aeroespacial",space:"Espacio",vision:"La visión entera"},
-    risk:{comfortable:"En casa con el horizonte",averse:"Quiere plazo más corto, menor riesgo"}
+    risk:{comfortable:"Cómodo con un horizonte a largo plazo",averse:"Quiere plazo más corto, menor riesgo"}
   };
   function label(f){ return (LABELS[f] && LABELS[f][answers[f]]) || answers[f] || "not given"; }
   function answerSummary(){
@@ -278,17 +278,22 @@
     }catch(e){}
   }
 
+  const NOTFIT = {
+    return_first:"Officina Prima está construida para mecenas que ponen la misión primero — la propiedad es real y bienvenida, pero sigue a la obra en lugar de guiarla.",
+    risk_mismatch:"Officina Prima vive en el extremo temprano, intensivo en capital y de horizonte largo de la invención — y no es para todos, lo cual no es juicio alguno."
+  };
+
   function evaluate(){
     const aligned = answers.posture==='mission' && answers.risk==='comfortable';
     if(aligned){
       const intl = answers.where==='intl';
-      const focus = TECH[answers.which] || "the work";
+      const focus = TECH[answers.which] || "la obra";
       stage.innerHTML =
         '<div class="outcome">'+
         '<p class="mono eyebrow">Podríamos estar en sintonía</p>'+
         '<h2>Entonces el siguiente paso es una conversación.</h2>'+
-        '<p>Usted pone la misión primero y se siente en casa con el horizonte — que es exactamente la actitud para la que esto está construido. La tecnología específica y los términos se definen directamente, en conversación, donde les corresponde.</p>'+
-        '<p>Hablaríamos de '+focus+' — qué es, en qué punto está, y qué significaría realmente respaldarla.'+(answers.which==='aero'?' Un dossier puede compartirse si estamos en sintonía.':'')+'</p>'+
+        '<p>Usted pone la misión primero y se siente cómodo con el horizonte a largo plazo — que es exactamente la actitud para la que esto está construido. La tecnología específica y los términos se definen directamente, en conversación, donde les corresponde.</p>'+
+        '<p>Tema de la conversación: '+focus+'. Revisaremos el estado del proyecto y qué supondría apoyarlo.'+(answers.which==='aero'?' Un dossier puede compartirse si estamos en sintonía.':'')+'</p>'+
         '<div class="recap">'+
           '<p class="recap-h">Sus respuestas, llevadas a la llamada</p>'+
           '<div class="recap-row"><span>Actitud</span><b>'+label('posture')+'</b></div>'+
@@ -302,7 +307,7 @@
           '<a class="btn" href="#" id="bookLink">Reserve la conversación <span>&rarr;</span></a>'+
           (answers.which==='energy' ? '<a class="btn-alt" href="../lighting-offset-calculator.html" target="_blank" rel="noopener">Impacto potencial <span>&rarr;</span></a>' : '')+
         '</div>'+
-        '<p class="disclaimer">Nada en esta página constituye una oferta de venta ni una solicitud de compra de valor alguno. Aquí no se representan cifras, rendimientos ni términos. Cualquier participación se discutiría en privado y se documentaría por separado.</p>'+
+        '<p class="disclaimer">Nada en esta página constituye una oferta de venta ni una solicitud de compra de valor alguno. No se indican aquí cifras, rendimientos ni términos. Cualquier participación se discutiría en privado y se documentaría por separado.</p>'+
         '</div>';
       var bl = document.getElementById('bookLink');
       if(window.hcaptcha){ var hb=document.getElementById('hcapBox'); if(hb && !hb.hasChildNodes()){ try{ hcaptcha.render('hcapBox', {sitekey:'50b2fe65-b00b-4b9e-ad62-3ba471098be2'}); }catch(e){} } }
@@ -315,11 +320,9 @@
         if(window.Calendly && u!=="#"){ ev.preventDefault(); Calendly.initPopupWidget({url:u}); }
       }); }
     } else {
-      const reason = answers.posture==='return'
-        ? "Officina Prima está construida para mecenas que ponen la misión primero — la propiedad es real y bienvenida, pero sigue a la obra en lugar de guiarla."
-        : "Officina Prima vive en el extremo temprano, intensivo en capital y de horizonte largo de la invención — y no es para todos, lo cual no es juicio alguno.";
-      try { localStorage.setItem('op_closed', reason); } catch(e){}
-      showNotFit(reason);
+      const code = answers.posture==='return' ? 'return_first' : 'risk_mismatch';
+      try { localStorage.setItem('op_closed', code); } catch(e){}
+      showNotFit(NOTFIT[code]);
     }
   }
 
@@ -335,7 +338,7 @@
 
   let closedReason = null;
   try { closedReason = localStorage.getItem('op_closed'); } catch(e){}
-  if(closedReason){ showNotFit(closedReason); } else { renderStep(); }
+  if(NOTFIT[closedReason]){ showNotFit(NOTFIT[closedReason]); } else { if(closedReason){ try{ localStorage.removeItem('op_closed'); }catch(e){} } renderStep(); }
 
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>

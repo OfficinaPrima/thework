@@ -136,7 +136,7 @@
         <a href="method.html">Metodo</a>
         <a href="involvement.html" class="current">Partecipazione</a>
       </nav>
-      <div class="langdd"><button class="langbtn" aria-label="Language">🇮🇹</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="involvement.html" class="cur">🇮🇹 Italiano</a><a href="../es/involvement.html">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="../ar/involvement.html">🇦🇪 العربية</a></div></div>
+      <div class="langdd"><button class="langbtn" aria-label="Seleziona lingua">🇮🇹</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="involvement.html" class="cur">🇮🇹 Italiano</a><a href="../es/involvement.html">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="../ar/involvement.html">🇦🇪 العربية</a></div></div>
       <button class="menu-btn">Menu</button>
     </div>
   </header>
@@ -278,17 +278,22 @@
     }catch(e){}
   }
 
+  const NOTFIT = {
+    return_first:"Officina Prima è costruita per mecenati che mettono la missione al primo posto — la proprietà è reale e benvenuta, ma segue l’opera invece di guidarla.",
+    risk_mismatch:"Officina Prima vive all’estremo iniziale, ad alta intensità di capitale e a lungo orizzonte dell’invenzione — e non è per tutti, il che non è affatto un giudizio."
+  };
+
   function evaluate(){
     const aligned = answers.posture==='mission' && answers.risk==='comfortable';
     if(aligned){
       const intl = answers.where==='intl';
-      const focus = TECH[answers.which] || "the work";
+      const focus = TECH[answers.which] || "l’opera";
       stage.innerHTML =
         '<div class="outcome">'+
         '<p class="mono eyebrow">Potremmo essere in sintonia</p>'+
         '<h2>Allora il passo successivo è una conversazione.</h2>'+
         '<p>Lei mette la missione al primo posto ed è a proprio agio con l’orizzonte — che è esattamente l’atteggiamento per cui tutto questo è costruito. La tecnologia specifica e i termini si definiscono direttamente, in conversazione, dove è giusto che sia.</p>'+
-        '<p>Parleremmo di '+focus+' — che cos’è, a che punto è, e cosa significherebbe davvero sostenerlo.'+(answers.which==='aero'?' Un dossier può essere condiviso se siamo in sintonia.':'')+'</p>'+
+        '<p>Tema del colloquio: '+focus+'. Parleremo dello stato del progetto e di ciò che occorre per sostenerlo.'+(answers.which==='aero'?' Un dossier può essere condiviso se siamo in sintonia.':'')+'</p>'+
         '<div class="recap">'+
           '<p class="recap-h">Le Sue risposte, portate nella chiamata</p>'+
           '<div class="recap-row"><span>Atteggiamento</span><b>'+label('posture')+'</b></div>'+
@@ -302,7 +307,7 @@
           '<a class="btn" href="#" id="bookLink">Prenoti la conversazione <span>&rarr;</span></a>'+
           (answers.which==='energy' ? '<a class="btn-alt" href="../lighting-offset-calculator.html" target="_blank" rel="noopener">Impatto potenziale <span>&rarr;</span></a>' : '')+
         '</div>'+
-        '<p class="disclaimer">Nulla in questa pagina costituisce un’offerta di vendita o una sollecitazione all’acquisto di alcun titolo. Qui non sono rappresentati cifre, rendimenti o termini. Qualsiasi partecipazione sarebbe discussa privatamente e documentata separatamente.</p>'+
+        '<p class="disclaimer">Nulla in questa pagina costituisce un’offerta di vendita o una sollecitazione all’acquisto di alcun titolo. In questa pagina non sono indicati cifre, rendimenti o termini. Qualsiasi partecipazione sarebbe discussa privatamente e documentata separatamente.</p>'+
         '</div>';
       var bl = document.getElementById('bookLink');
       if(window.hcaptcha){ var hb=document.getElementById('hcapBox'); if(hb && !hb.hasChildNodes()){ try{ hcaptcha.render('hcapBox', {sitekey:'50b2fe65-b00b-4b9e-ad62-3ba471098be2'}); }catch(e){} } }
@@ -315,11 +320,9 @@
         if(window.Calendly && u!=="#"){ ev.preventDefault(); Calendly.initPopupWidget({url:u}); }
       }); }
     } else {
-      const reason = answers.posture==='return'
-        ? "Officina Prima è costruita per mecenati che mettono la missione al primo posto — la proprietà è reale e benvenuta, ma segue l’opera invece di guidarla."
-        : "Officina Prima vive all’estremo iniziale, ad alta intensità di capitale e a lungo orizzonte dell’invenzione — e non è per tutti, il che non è affatto un giudizio.";
-      try { localStorage.setItem('op_closed', reason); } catch(e){}
-      showNotFit(reason);
+      const code = answers.posture==='return' ? 'return_first' : 'risk_mismatch';
+      try { localStorage.setItem('op_closed', code); } catch(e){}
+      showNotFit(NOTFIT[code]);
     }
   }
 
@@ -335,7 +338,7 @@
 
   let closedReason = null;
   try { closedReason = localStorage.getItem('op_closed'); } catch(e){}
-  if(closedReason){ showNotFit(closedReason); } else { renderStep(); }
+  if(NOTFIT[closedReason]){ showNotFit(NOTFIT[closedReason]); } else { if(closedReason){ try{ localStorage.removeItem('op_closed'); }catch(e){} } renderStep(); }
 
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>

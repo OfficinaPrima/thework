@@ -278,6 +278,11 @@
     }catch(e){}
   }
 
+  const NOTFIT = {
+    return_first:"Officina Prima is built for patrons who lead with the mission \u2014 ownership is real and welcome, but it follows the work rather than leading it.",
+    risk_mismatch:"Officina Prima lives at the early, capital-intensive, long-horizon end of invention \u2014 and that\u2019s not for everyone, which is no judgment at all."
+  };
+
   function evaluate(){
     const aligned = answers.posture==='mission' && answers.risk==='comfortable';
     if(aligned){
@@ -315,11 +320,9 @@
         if(window.Calendly && u!=="#"){ ev.preventDefault(); Calendly.initPopupWidget({url:u}); }
       }); }
     } else {
-      const reason = answers.posture==='return'
-        ? "Officina Prima is built for patrons who lead with the mission \u2014 ownership is real and welcome, but it follows the work rather than leading it."
-        : "Officina Prima lives at the early, capital-intensive, long-horizon end of invention \u2014 and that\u2019s not for everyone, which is no judgment at all.";
-      try { localStorage.setItem('op_closed', reason); } catch(e){}
-      showNotFit(reason);
+      const code = answers.posture==='return' ? 'return_first' : 'risk_mismatch';
+      try { localStorage.setItem('op_closed', code); } catch(e){}
+      showNotFit(NOTFIT[code]);
     }
   }
 
@@ -335,7 +338,7 @@
 
   let closedReason = null;
   try { closedReason = localStorage.getItem('op_closed'); } catch(e){}
-  if(closedReason){ showNotFit(closedReason); } else { renderStep(); }
+  if(NOTFIT[closedReason]){ showNotFit(NOTFIT[closedReason]); } else { if(closedReason){ try{ localStorage.removeItem('op_closed'); }catch(e){} } renderStep(); }
 
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
