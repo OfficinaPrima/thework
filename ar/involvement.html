@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ar" dir="rtl">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDKZ8T3F82"></script>
@@ -11,7 +11,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Officina Prima · Participación</title>
+<title>Officina Prima · المشاركة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -125,6 +126,19 @@
 .langmenu a:hover{color:var(--ink);background:var(--paper);}
 .langmenu a.cur{color:var(--accent);}
 </style>
+<style>
+body{font-family:"IBM Plex Sans Arabic","IBM Plex Sans",sans-serif;}
+*{letter-spacing:0!important;}
+h1,h2,h3,blockquote,.q,.problem,.rname,.nm,.lede,.a-lead{font-family:"Amiri","Spectral",serif!important;}
+.pullquote{border-left:0;border-right:2px solid var(--accent);padding:6px 26px 6px 0;}
+.section-head .head-note{margin-left:0;margin-right:auto;text-align:left;}
+.fullplate .cap .more{margin-left:0;margin-right:auto;}
+.langdd{margin-left:0;margin-right:14px;}
+.langmenu{right:auto;left:0;}
+.mast-tag{margin-left:0;margin-right:14px;}
+.jurnote{border-left:0;border-right:2px solid var(--accent);padding:8px 14px 8px 0;}
+.recap{border-left:1px solid var(--rule);border-right:2px solid var(--accent);}
+</style>
 </head>
 <body>
 
@@ -132,22 +146,22 @@
     <div class="wrap">
       <a class="wordmark" href="index.html"><span class="dot"></span>Officina&nbsp;Prima</a>
       <nav class="primary">
-        <a href="index.html#work">Obras</a>
-        <a href="method.html">Método</a>
-        <a href="involvement.html" class="current">Participación</a>
+        <a href="index.html#work">الأعمال</a>
+        <a href="method.html">المنهج</a>
+        <a href="involvement.html" class="current">المشاركة</a>
       </nav>
-      <div class="langdd"><button class="langbtn" aria-label="Language">🇪🇸</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="involvement.html" class="cur">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="../ar/involvement.html">🇦🇪 العربية</a></div></div>
+      <div class="langdd"><button class="langbtn" aria-label="Language">🇦🇪</button><div class="langmenu"><a href="../involvement.html">🇺🇸 English</a><a href="../it/involvement.html">🇮🇹 Italiano</a><a href="../es/involvement.html">🇪🇸 Español</a><a href="../de/involvement.html">🇩🇪 Deutsch</a><a href="involvement.html" class="cur">🇦🇪 العربية</a></div></div>
       <button class="menu-btn">Menu</button>
     </div>
   </header>
 
   <section class="intro">
     <div class="wrap">
-      <span class="idx">§ Participación</span>
-      <h1>Explore su participación</h1>
-      <p>Esto es mecenazgo en el sentido más antiguo: respaldar a un creador, y una obra destinada a sobrevivir a todos los implicados. Usted financia el desarrollo de una tecnología, y posee una parte de lo que gana en el mercado. La obra misma sigue siendo del creador.</p>
-      <p>Lo que pide es una actitud: la obra primero, el horizonte largo, el riesgo comprendido y aceptado. Unas pocas preguntas para ver si estamos en sintonía. Si lo estamos, el siguiente paso es una conversación.</p>
-      <p class="fineprint">Sin cifras, términos ni ofertas aquí &middot; su lugar está en la conversación</p>
+      <span class="idx">§ المشاركة</span>
+      <h1>استكشفوا مشاركتكم</h1>
+      <p>هذه رعايةٌ بأقدم معانيها: دعمُ صانعٍ، وعملٌ مقصودٌ به أن يبقى بعد كل المعنيين. أنتم تموّلون تطوير تقنية، وتملكون حصةً مما تكسبه في السوق. أما العمل نفسه فيبقى لصانعه.</p>
+      <p>ما يطلبه هو موقف: العمل أولًا، والأفق طويل، والمخاطرة مفهومة ومقبولة. بضعة أسئلة لنرى إن كنا متوافقين. فإن كنا، فالخطوة التالية حوار.</p>
+      <p class="fineprint">لا أرقام ولا شروط ولا عروض هنا &middot; مكانها الحوار</p>
     </div>
   </section>
 
@@ -163,7 +177,7 @@
   <footer class="colophon">
     <div class="wrap">
       <span class="mono">Officina Prima</span>
-      <span class="mono">Un taller de primer orden</span>
+      <span class="mono">ورشةٌ من الطراز الأول</span>
     </div>
   </footer>
 
@@ -171,44 +185,44 @@
   const STEPS = [
     {
       id:'posture',
-      q:"Para empezar, ¿cuál es su actitud ante todo esto?",
-      sub:"Unas pocas preguntas para ver si creador y mecenas están en sintonía.",
+      q:"بدايةً، ما موقفكم من هذا كله؟",
+      sub:"بضعة أسئلة لنرى إن كان الصانع والراعي متوافقين.",
       type:'list',
       opts:[
-        {k:'A', t:"Quiero respaldar la obra y la misión. La propiedad importa, pero la obra va primero.", v:'mission'},
-        {k:'B', t:"Estoy aquí principalmente por el rendimiento financiero.", v:'return'}
+        {k:'A', t:"أريد دعم العمل والرسالة. الملكية مهمة، لكن العمل يأتي أولًا.", v:'mission'},
+        {k:'B', t:"أنا هنا أساسًا من أجل العائد المالي.", v:'return'}
       ]
     },
     {
       id:'where',
-      q:"¿Desde dónde respaldaría todo esto?",
-      sub:"Lo preguntamos para que los términos puedan ajustarse a donde usted está.",
+      q:"من أين ستدعمون هذا؟",
+      sub:"نسأل لكي تلائم الشروطُ مكانَكم.",
       type:'list',
       opts:[
-        {k:'A',t:"Dentro de los Estados Unidos",v:'us'},
-        {k:'B',t:"Fuera de los Estados Unidos",v:'intl'}
+        {k:'A',t:"داخل الولايات المتحدة",v:'us'},
+        {k:'B',t:"خارج الولايات المتحدة",v:'intl'}
       ]
     },
     {
       id:'which',
-      q:"¿Qué parte de la obra le atrae, o es la visión entera?",
-      sub:"Esto solo nos dice por dónde empezar la conversación.",
+      q:"أيُّ العمل يجذبكم، أم هي الرؤية كلها؟",
+      sub:"هذا يخبرنا فقط من أين نبدأ الحوار.",
       type:'grid',
       opts:[
-        {k:'',t:"Espacio",v:'space'},{k:'',t:"Aeroespacial",v:'aero'},
-        {k:'',t:"Automoción",v:'auto'},{k:'',t:"Energía",v:'energy'},
-        {k:'',t:"Educación",v:'toys'},{k:'',t:"Seguridad personal",v:'safety'},
-        {k:'',t:"Agricultura",v:'agri'},{k:'',t:"La visión entera",v:'vision'}
+        {k:'',t:"الفضاء",v:'space'},{k:'',t:"الطيران",v:'aero'},
+        {k:'',t:"السيارات",v:'auto'},{k:'',t:"الطاقة",v:'energy'},
+        {k:'',t:"التعليم",v:'toys'},{k:'',t:"السلامة الشخصية",v:'safety'},
+        {k:'',t:"الزراعة",v:'agri'},{k:'',t:"الرؤية الأوسع",v:'vision'}
       ]
     },
     {
       id:'risk',
-      q:"La última. La invención de frontera es de fase temprana, intensiva en capital y de horizonte largo. ¿Cómo se siente usted ante eso?",
-      sub:"Dicho con franqueza, para que el encaje sea honesto por ambas partes.",
+      q:"السؤال الأخير. اختراع الجبهات مبكرُ المرحلة، كثيفُ رأس المال، طويلُ الأفق. فكيف يقع ذلك عندكم؟",
+      sub:"قيل بوضوح، ليكون التوافق صادقًا من الجانبين.",
       type:'list',
       opts:[
-        {k:'A',t:"Ese es justamente el punto. Me siento en casa con ello.", v:'comfortable'},
-        {k:'B',t:"Preferiría algo de plazo más corto y menor riesgo.", v:'averse'}
+        {k:'A',t:"هذا هو المقصود بعينه. أنا مطمئنٌ إليه تمامًا.", v:'comfortable'},
+        {k:'B',t:"أفضّل شيئًا أقرب أجلًا وأقل مخاطرة.", v:'averse'}
       ]
     }
   ];
@@ -231,7 +245,7 @@
     stage.innerHTML =
       '<div class="step-head"><span class="progress">0'+(i+1)+' / 0'+STEPS.length+'</span><span class="ticks">'+ticks(i)+'</span></div>'+
       '<p class="q">'+s.q+'</p><p class="qsub">'+s.sub+'</p>'+opts+
-      '<div class="navrow">'+(i===0?'<a class="btn" href="index.html">&larr; Volver a la obra</a>':'<button class="back" id="back">&larr; Atrás</button>')+'</div>';
+      '<div class="navrow">'+(i===0?'<a class="btn" href="index.html">&rarr; العودة إلى العمل</a>':'<button class="back" id="back">&rarr; رجوع</button>')+'</div>';
     stage.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
       answers[s.id]=b.getAttribute('data-v');
       if(s.id==='posture' && answers.posture==='return'){ evaluate(); return; }
@@ -241,7 +255,7 @@
     if(back) back.addEventListener('click',()=>{ if(i>0){ i--; renderStep(); } });
   }
 
-  const TECH = {agri:"la tecnología que libera la luz del sol del cielo para que el alimento pueda crecer en cualquier lugar",toys:"el juguete inteligente del taller para un aprendizaje temprano más rápido",auto:"el sistema para salvar a los pasajeros cuando un choque no puede evitarse",energy:"el sistema del taller para poner el sol a trabajar día y noche",safety:"el dispositivo de seguridad que previene el accidente en lugar de sobrevivirlo",aero:"el sistema de supervivencia para salvar a los ocupantes cuando una aeronave no puede salvarse",space:"el sistema del taller para la captura de asteroides",vision:"la visión entera, donde cada frontera despeja un obstáculo más de nuestro avance como especie"};
+  const TECH = {agri:"التقنية التي تحرر ضوء الشمس من السماء لينمو الغذاء في أي مكان",toys:"لعبة الورشة الذكية لتعلمٍ مبكرٍ أسرع",auto:"نظام إنقاذ الركاب حين يتعذر تفادي التصادم",energy:"نظام الورشة لتشغيل الشمس ليلَ نهار",safety:"جهاز السلامة الذي يمنع الحادث بدل النجاة منه",aero:"نظام النجاة لإنقاذ من في الطائرة حين يتعذر إنقاذها",space:"نظام الورشة لالتقاط الكويكبات",vision:"الرؤية كلها، حيث تزيح كل جبهةٍ عقبةً أخرى من طريق تقدمنا كنوع"};
 
   /* ===== Booking + answer capture ===== */
   /* 1) Paste your Calendly event link between the quotes, e.g. https://calendly.com/you/intro */
@@ -252,10 +266,10 @@
   var FORM_ENDPOINT = "";
 
   const LABELS = {
-    posture:{mission:"Respalda primero la misión",return:"Primero el rendimiento"},
-    where:{us:"Dentro de los Estados Unidos",intl:"Fuera de los Estados Unidos"},
-    which:{agri:"Agricultura",toys:"Educación",auto:"Automoción",energy:"Energía",safety:"Seguridad personal",aero:"Aeroespacial",space:"Espacio",vision:"La visión entera"},
-    risk:{comfortable:"En casa con el horizonte",averse:"Quiere plazo más corto, menor riesgo"}
+    posture:{mission:"الرسالة أولًا",return:"العائد أولًا"},
+    where:{us:"داخل الولايات المتحدة",intl:"خارج الولايات المتحدة"},
+    which:{agri:"الزراعة",toys:"التعليم",auto:"السيارات",energy:"الطاقة",safety:"السلامة الشخصية",aero:"الطيران",space:"الفضاء",vision:"الرؤية الأوسع"},
+    risk:{comfortable:"مطمئنٌ إلى الأفق",averse:"يريد أقرب أجلًا وأقل مخاطرة"}
   };
   function label(f){ return (LABELS[f] && LABELS[f][answers[f]]) || answers[f] || "not given"; }
   function answerSummary(){
@@ -285,24 +299,24 @@
       const focus = TECH[answers.which] || "the work";
       stage.innerHTML =
         '<div class="outcome">'+
-        '<p class="mono eyebrow">Podríamos estar en sintonía</p>'+
-        '<h2>Entonces el siguiente paso es una conversación.</h2>'+
-        '<p>Usted pone la misión primero y se siente en casa con el horizonte — que es exactamente la actitud para la que esto está construido. La tecnología específica y los términos se definen directamente, en conversación, donde les corresponde.</p>'+
-        '<p>Hablaríamos de '+focus+' — qué es, en qué punto está, y qué significaría realmente respaldarla.'+(answers.which==='aero'?' Un dossier puede compartirse si estamos en sintonía.':'')+'</p>'+
+        '<p class="mono eyebrow">قد نكون متوافقين</p>'+
+        '<h2>إذًا الخطوة التالية حوار.</h2>'+
+        '<p>أنتم تقدّمون الرسالةَ أولًا وأنتم مطمئنون إلى الأفق — وهذا تحديدًا الموقف الذي بُني له هذا كله. أما التقنية بعينها والشروط فتُحسم مباشرةً، في الحوار، حيث مكانها.</p>'+
+        '<p>سنتحدث عن '+focus+' — ما هي، وأين تقف، وماذا يعني دعمها فعلًا.'+(answers.which==='aero'?' ويمكن مشاركة ملفٍ تعريفي إن كنا متوافقين.':'')+'</p>'+
         '<div class="recap">'+
-          '<p class="recap-h">Sus respuestas, llevadas a la llamada</p>'+
-          '<div class="recap-row"><span>Actitud</span><b>'+label('posture')+'</b></div>'+
-          '<div class="recap-row"><span>Ámbito</span><b>'+label('which')+'</b></div>'+
-          '<div class="recap-row"><span>Región</span><b>'+label('where')+'</b></div>'+
-          '<div class="recap-row"><span>Horizonte</span><b>'+label('risk')+'</b></div>'+
+          '<p class="recap-h">إجاباتكم، محمولةً إلى المكالمة</p>'+
+          '<div class="recap-row"><span>الموقف</span><b>'+label('posture')+'</b></div>'+
+          '<div class="recap-row"><span>المجال</span><b>'+label('which')+'</b></div>'+
+          '<div class="recap-row"><span>المنطقة</span><b>'+label('where')+'</b></div>'+
+          '<div class="recap-row"><span>الأفق</span><b>'+label('risk')+'</b></div>'+
         '</div>'+
         '<div class="h-captcha" id="hcapBox" style="margin:26px 0 8px;"></div>'+
-        '<p class="mono" id="capNote" style="display:none;color:var(--accent-soft);margin:0 0 12px;">Complete la verificación de arriba antes de reservar.</p>'+
+        '<p class="mono" id="capNote" style="display:none;color:var(--accent-soft);margin:0 0 12px;">يرجى إتمام التحقق أعلاه قبل الحجز.</p>'+
         '<div class="actionrow">'+
-          '<a class="btn" href="#" id="bookLink">Reserve la conversación <span>&rarr;</span></a>'+
-          (answers.which==='energy' ? '<a class="btn-alt" href="../lighting-offset-calculator.html" target="_blank" rel="noopener">Impacto potencial <span>&rarr;</span></a>' : '')+
+          '<a class="btn" href="#" id="bookLink">احجزوا الحوار <span>&larr;</span></a>'+
+          (answers.which==='energy' ? '<a class="btn-alt" href="../lighting-offset-calculator.html" target="_blank" rel="noopener">الأثر المحتمل <span>&larr;</span></a>' : '')+
         '</div>'+
-        '<p class="disclaimer">Nada en esta página constituye una oferta de venta ni una solicitud de compra de valor alguno. Aquí no se representan cifras, rendimientos ni términos. Cualquier participación se discutiría en privado y se documentaría por separado.</p>'+
+        '<p class="disclaimer">لا شيء في هذه الصفحة عرضٌ للبيع أو دعوةٌ لشراء أي ورقة مالية. لا تُعرض هنا أرقام ولا عوائد ولا شروط. وأي مشاركةٍ ستُناقش في إطارٍ خاص وتُوثّق على حدة.</p>'+
         '</div>';
       var bl = document.getElementById('bookLink');
       if(window.hcaptcha){ var hb=document.getElementById('hcapBox'); if(hb && !hb.hasChildNodes()){ try{ hcaptcha.render('hcapBox', {sitekey:'50b2fe65-b00b-4b9e-ad62-3ba471098be2'}); }catch(e){} } }
@@ -316,8 +330,8 @@
       }); }
     } else {
       const reason = answers.posture==='return'
-        ? "Officina Prima está construida para mecenas que ponen la misión primero — la propiedad es real y bienvenida, pero sigue a la obra en lugar de guiarla."
-        : "Officina Prima vive en el extremo temprano, intensivo en capital y de horizonte largo de la invención — y no es para todos, lo cual no es juicio alguno.";
+        ? "بُنيت Officina Prima لرعاةٍ يقدّمون الرسالة أولًا — الملكية حقيقية ومرحّبٌ بها، لكنها تتبع العمل ولا تقوده."
+        : "تعيش Officina Prima عند الطرف المبكر، الكثيف رأس المال، الطويل الأفق من الاختراع — وهو ليس للجميع، وليس في ذلك حكمٌ على أحد.";
       try { localStorage.setItem('op_closed', reason); } catch(e){}
       showNotFit(reason);
     }
@@ -326,10 +340,10 @@
   function showNotFit(reason){
     stage.innerHTML =
       '<div class="outcome">'+
-      '<p class="mono eyebrow">Un encaje honesto</p>'+
-      '<h2>Puede que no sea el encaje adecuado — y no pasa nada.</h2>'+
+      '<p class="mono eyebrow">توافقٌ صادق</p>'+
+      '<h2>قد لا يكون هذا هو التوافق الصحيح — ولا بأس في ذلك.</h2>'+
       '<p>'+reason+'</p>'+
-      '<p>El taller prefiere ser franco con usted antes que tomarle tiempo en algo desalineado. Si su situación cambia — o si simplemente desea ver más de la obra — la puerta sigue abierta.</p>'+
+      '<p>تفضّل الورشة أن تكون صريحةً معكم على أن تأخذ وقتكم في ما لا يوافقكم. فإن تغيّر حالكم — أو أردتم فقط رؤية المزيد من العمل — فالباب يبقى مفتوحًا.</p>'+
       '</div>';
   }
 
@@ -349,7 +363,7 @@
     }
   })();
 </script>
-<nav class="botnav"><a href="index.html#work">Obras</a><a href="method.html">Método</a><a class="current" href="involvement.html">Participación</a></nav>
+<nav class="botnav"><a href="index.html#work">الأعمال</a><a href="method.html">المنهج</a><a class="current" href="involvement.html">المشاركة</a></nav>
 <script>
 (function(){var d=document.querySelector('.langdd');if(!d)return;var b=d.querySelector('.langbtn');
 b.addEventListener('click',function(e){e.stopPropagation();d.classList.toggle('open');});
