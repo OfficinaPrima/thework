@@ -87,6 +87,16 @@
   body{padding-bottom:54px;}
 }
 </style>
+<style>
+.langdd{position:relative;margin-left:14px;}
+.langbtn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--ink);background:none;border:1px solid var(--rule);padding:7px 10px;cursor:pointer;}
+.langmenu{display:none;position:absolute;right:0;top:calc(100% + 6px);background:var(--lift);border:1px solid var(--rule);z-index:120;min-width:150px;}
+.langdd.open .langmenu{display:block;}
+.langmenu a{display:block;padding:10px 14px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;color:var(--graphite);text-decoration:none;border-bottom:1px solid var(--rule);}
+.langmenu a:last-child{border-bottom:none;}
+.langmenu a:hover{color:var(--ink);background:var(--paper);}
+.langmenu a.cur{color:var(--accent);}
+</style>
 </head>
 <body>
 
@@ -98,7 +108,7 @@
         <a href="method.html" class="current">Metodo</a>
         <a href="involvement.html">Partecipazione</a>
       </nav>
-      <span class="langtog" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--ink);margin-left:14px;"><a href="../method.html" style="color:var(--graphite);">EN</a> IT <a href="../es/method.html" style="color:var(--graphite);">ES</a></span>
+      <div class="langdd"><button class="langbtn" aria-label="Sprache / Language">🇮🇹 IT ▾</button><div class="langmenu"><a href="../method.html">🇺🇸 English</a><a href="method.html" class="cur">🇮🇹 Italiano</a><a href="../es/method.html">🇪🇸 Español</a><a href="../de/method.html">🇩🇪 Deutsch</a></div></div>
       <button class="menu-btn">Menu</button>
     </div>
   </header>
@@ -180,5 +190,10 @@
   })();
 </script>
 <nav class="botnav"><a href="index.html#work">Opere</a><a class="current" href="method.html">Metodo</a><a href="involvement.html">Partecipazione</a></nav>
+<script>
+(function(){var d=document.querySelector('.langdd');if(!d)return;var b=d.querySelector('.langbtn');
+b.addEventListener('click',function(e){e.stopPropagation();d.classList.toggle('open');});
+document.addEventListener('click',function(){d.classList.remove('open');});})();
+</script>
 </body>
 </html>
